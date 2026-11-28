@@ -3,45 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mirrors &middot; Fiordland Linux</title>
-<meta name="description" content="Servers that carry the Fiordland package repo and ISOs.">
-<meta name="theme-color" content="#131313">
+<title>Mirrors | Fiordland Linux</title>
+<meta name="description" content="Mirrors that carry the Fiordland Linux package repo and ISOs, how to pick one, and how to host a mirror of your own.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/mirrors/">
-<meta property="og:url" content="https://fiordlandlinux.org/mirrors/">
-<meta property="og:title" content="Fiordland mirrors">
-<meta property="og:description" content="Servers that carry the Fiordland package repo and ISOs.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:url" content="https://fiordlandlinux.org/mirrors/">
+<meta property="og:title" content="Mirrors | Fiordland Linux">
+<meta property="og:description" content="Mirrors that carry the Fiordland Linux package repo and ISOs, how to pick one, and how to host a mirror of your own.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mirrors | Fiordland Linux">
+<meta name="twitter:description" content="Mirrors that carry the Fiordland Linux package repo and ISOs, how to pick one, and how to host a mirror of your own.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Mirrors","item":"https://fiordlandlinux.org/mirrors/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
+<section class="page-head"><div class="wrap"><h1>Mirrors</h1><p class="lede">Servers that carry the package repo and the ISOs. Packages are signed, so a mirror can't change one without pacman noticing.</p></div><svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg></section>
+<main id="main" class="wrap page">
 
-<main class="wrap main-pad">
-  <p class="eyebrow">Mirrors</p>
-  <h1 class="page">Fiordland mirrors</h1>
-  <p class="lede">Servers that carry the package repo and the ISOs. Packages are signed, so a mirror can't change one without pacman noticing.</p>
 
   <div class="mlist" id="mirror-list" aria-live="polite">
     <p class="note">Loading mirrors..</p>
@@ -49,8 +59,8 @@
   <p class="note" id="mirror-where"></p>
   <p class="note">Status is checked every 10 minutes. A mirror is marked down if it is unreachable or more than 6 hours behind.</p>
 
-  <section class="msec">
-    <h2 class="h3">Use a mirror</h2>
+  <section class="sec">
+    <h2>Use a mirror</h2>
     <p>Installed systems use the primary server. To switch, change the <code>[fiordland]</code> section in <code>/etc/pacman.conf</code>:</p>
     <pre class="term" id="use-snip">[fiordland]
 SigLevel = Required
@@ -58,8 +68,8 @@ Server = https://MIRROR/repo/$arch</pre>
     <p class="note">A list of the mirrors that are up right now is at <a href="/mirrors/mirrorlist">/mirrors/mirrorlist</a>.</p>
   </section>
 
-  <section class="msec">
-    <h2 class="h3">Host a mirror</h2>
+  <section class="sec">
+    <h2>Host a mirror</h2>
     <p>You need enough disk for all files listed in the current mirror manifest, plus room for a new ISO, a hostname with HTTPS, and a connection that can handle ISO downloads of 3 GB each. Sync once an hour.</p>
     <ol class="msteps">
       <li><h3>Get the script</h3><pre class="term" id="m-get">curl -O https://fiordlandlinux.org/mirrors/sync.sh</pre></li>
@@ -73,30 +83,27 @@ Server = https://MIRROR/repo/$arch</pre>
     </ol>
   </section>
 
-  <section class="msec">
-    <h2 class="h3">Verify downloads</h2>
-    <p>The SHA256 for the latest ISO is on the <a href="/#install">install section</a> and in the mirror's <code>iso/latest.json</code>. Compare it after downloading from any mirror.</p>
+  <section class="sec">
+    <h2>Verify downloads</h2>
+    <p>The SHA256 for the latest ISO is on the <a href="/download/">download page</a> and in the mirror's <code>iso/latest.json</code>. Compare it after downloading from any mirror.</p>
   </section>
-</main>
 
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
   </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ Back up anything you want to keep before you start. Installing on a whole disk r
 
 ## Make the USB stick
 
-1. Download the ISO from [fiordlandlinux.org](https://fiordlandlinux.org). The SHA-256 checksum is listed under the download button. On Linux, check the download with:
+1. Download the ISO from [fiordlandlinux.org](https://fiordlandlinux.org). The SHA-256 checksum is listed on the download page. On Linux, check the download with:
 
    ```
    sha256sum fiordland-*.iso

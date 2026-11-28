@@ -1,0 +1,39 @@
+
+  <p class="eyebrow">Mirrors</p>
+  <h1 class="page">Fiordland mirrors</h1>
+  <p class="lede">Servers that carry the package repo and the ISOs. Packages are signed, so a mirror can't change one without pacman noticing.</p>
+
+  <div class="mlist" id="mirror-list" aria-live="polite">
+    <p class="note">Loading mirrors..</p>
+  </div>
+  <p class="note" id="mirror-where"></p>
+  <p class="note">Status is checked every 10 minutes. A mirror is marked down if it is unreachable or more than 6 hours behind.</p>
+
+  <section class="msec">
+    <h2 class="h3">Use a mirror</h2>
+    <p>Installed systems use the primary server. To switch, change the <code>[fiordland]</code> section in <code>/etc/pacman.conf</code>:</p>
+    <pre class="term" id="use-snip">[fiordland]
+SigLevel = Required
+Server = https://MIRROR/repo/$arch</pre>
+    <p class="note">A list of the mirrors that are up right now is at <a href="/mirrors/mirrorlist">/mirrors/mirrorlist</a>.</p>
+  </section>
+
+  <section class="msec">
+    <h2 class="h3">Host a mirror</h2>
+    <p>You need enough disk for all files listed in the current mirror manifest, plus room for a new ISO, a hostname with HTTPS, and a connection that can handle ISO downloads of 3 GB each. Sync once an hour.</p>
+    <ol class="msteps">
+      <li><h3>Get the script</h3><pre class="term" id="m-get">curl -O https://fiordlandlinux.org/mirrors/sync.sh</pre></li>
+      <li><h3>Run the first sync</h3><pre class="term" id="m-run">bash sync.sh /srv/mirror/fiordland</pre><p>It downloads the repo and ISOs, checks every file against a SHA256 manifest, and removes files the primary no longer has.</p></li>
+      <li><h3>Sync every hour</h3><pre class="term" id="m-cron">0 * * * * /bin/bash /path/to/sync.sh /srv/mirror/fiordland</pre></li>
+      <li><h3>Serve it over HTTPS</h3><pre class="term" id="m-web">mirror.example.org {
+    root * /srv/mirror/fiordland
+    file_server
+}</pre><p>The site root must contain <code>repo/</code> and <code>iso/</code>.</p></li>
+      <li><h3>Tell us</h3><p>Open an issue on <a href="https://github.com/Fiordland-Linux/fiordland/issues">GitHub</a> with the URL, your location and the name to show as sponsor. We add it to the list once it passes the check.</p></li>
+    </ol>
+  </section>
+
+  <section class="msec">
+    <h2 class="h3">Verify downloads</h2>
+    <p>The SHA256 for the latest ISO is on the <a href="/download/">download page</a> and in the mirror's <code>iso/latest.json</code>. Compare it after downloading from any mirror.</p>
+  </section>

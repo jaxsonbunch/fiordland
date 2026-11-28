@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-import html
+import json
 import os
 import re
 import subprocess
@@ -13,99 +13,11 @@ SITE = ROOT / "site"
 NEWS = SITE / "news"
 VERSION = re.compile(r"^[0-9]+(\.[0-9]+){1,3}$")
 
-PAGE = """<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>News &middot; Fiordland Linux</title>
-<meta name="description" content="Release notes for each Fiordland version.">
-<meta name="theme-color" content="#131313">
-<link rel="canonical" href="https://fiordlandlinux.org/news/">
-<meta property="og:url" content="https://fiordlandlinux.org/news/">
-<meta property="og:title" content="Fiordland news">
-<meta property="og:description" content="Release notes for each Fiordland version.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=19">
-</head>
-<body>
-<header class="nav">
-  <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
-    </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
-  </div>
-</header>
-
-<main class="wrap main-pad">
-  <h1 class="page">News</h1>
-  <p class="lede">What changed in each Fiordland release. Installed systems get these with <code>tawaki update</code>.</p>
-{posts}
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-    <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-  </div>
-</footer>
-<script src="/assets/js/site.js?v=4" defer></script>
-</body>
-</html>
-"""
+BUILD = Path(os.environ.get("FIORDLAND_BUILD", Path(__file__).resolve().parents[1] / "docs" / "build.py"))
 
 
 def vkey(path):
     return tuple(int(p) for p in path.stem.split("."))
-
-
-def render_post(path):
-    lines = [l.rstrip() for l in path.read_text(encoding="utf-8").splitlines()]
-    lines = [l for l in lines if l.strip()]
-    title = lines[0] if lines else f"Fiordland {path.stem}"
-    posted = time.strftime("%Y-%m-%d", time.gmtime(path.stat().st_mtime))
-    out = [f'  <section class="msec" id="v{path.stem}">',
-           f'    <h2 class="h3">{html.escape(title)}</h2>',
-           f'    <p class="eyebrow">{posted} &middot; <a href="/news/{path.name}">plain text</a></p>']
-    bullets = []
-
-    def flush():
-        if bullets:
-            out.append('    <ul class="dlist">' + "".join(f"<li>{html.escape(b)}</li>" for b in bullets) + "</ul>")
-            bullets.clear()
-
-    for line in lines[1:]:
-        if line.startswith("- "):
-            bullets.append(line[2:].strip())
-        else:
-            flush()
-            out.append(f"    <p>{html.escape(line.strip())}</p>")
-    flush()
-    out.append("  </section>")
-    return "\n".join(out)
 
 
 def posts():
@@ -121,44 +33,24 @@ def write(path, text):
     tmp.replace(path)
 
 
-def point_home_page_at(version):
-    index = SITE / "index.html"
-    text = index.read_text(encoding="utf-8")
-    shown = re.sub(r"(\.0)+$", "", version)
-    text, a = re.subn(r'<a class="badge" href="[^"]*">(<span class="dot"></span><span class="shine">)Fiordland [0-9.]+ ',
-                      rf'<a class="badge" href="/news/#v{version}">\g<1>Fiordland {shown} ', text)
-    text, b = re.subn(r'"softwareVersion":"[^"]*"', f'"softwareVersion":"{version}"', text)
-    if not (a and b):
-        sys.exit("post-news: couldn't find the version badge on the home page; it may have been redesigned.")
-    write(index, text)
-
-
-def ensure_links():
-    index = SITE / "index.html"
-    text = index.read_text(encoding="utf-8")
-    if 'href="/news/">News</a>' not in text:
-        text = text.replace('    <a href="/docs/">Docs</a>\n    <a href="/wiki/">Wiki</a>\n    <a href="/mirrors/">',
-                            '    <a href="/news/">News</a>\n    <a href="/docs/">Docs</a>\n    <a href="/wiki/">Wiki</a>\n    <a href="/mirrors/">', 1)
-        write(index, text)
-    sitemap = SITE / "sitemap.xml"
-    sm = sitemap.read_text(encoding="utf-8")
-    today = time.strftime("%Y-%m-%d", time.gmtime())
-    if "/news/</loc>" in sm:
-        sm = re.sub(r"(<loc>https://fiordlandlinux.org/news/</loc><lastmod>)[^<]*", rf"\g<1>{today}", sm)
-    else:
-        sm = sm.replace("</urlset>", f"  <url><loc>https://fiordlandlinux.org/news/</loc><lastmod>{today}</lastmod></url>\n</urlset>")
-    write(sitemap, sm)
+def remember_date(version):
+    """The news page shows when each note was posted. Keep that in a file so it survives a fresh checkout."""
+    path = NEWS / "dates.json"
+    dates = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    dates.setdefault(version, time.strftime("%Y-%m-%d", time.gmtime()))
+    write(path, json.dumps(dates, indent=1) + "\n")
 
 
 def rebuild():
-    write(NEWS / "index.html", PAGE.replace("{posts}", "\n".join(render_post(p) for p in posts())))
-    ensure_links()
+    if not BUILD.exists():
+        sys.exit(f"post-news: can't find the site generator at {BUILD}. Set FIORDLAND_BUILD to ops/docs/build.py.")
+    subprocess.run([sys.executable, str(BUILD), str(SITE)], check=True)
 
 
 def commit(message):
     if subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--git-dir"], capture_output=True).returncode:
         return
-    subprocess.run(["git", "-C", str(ROOT), "add", "site/news", "site/index.html", "site/sitemap.xml"], check=True)
+    subprocess.run(["git", "-C", str(ROOT), "add", "site"], check=True)
     if subprocess.run(["git", "-C", str(ROOT), "commit", "-q", "-m", message]).returncode == 0:
         print("Committed to git.")
 
@@ -167,7 +59,7 @@ def main():
     ap = argparse.ArgumentParser(
         description="Post Fiordland release notes and rebuild /news/.",
         epilog='Notes are plain text: the first line is the title, lines starting with "- " become bullets, '
-               "other lines become paragraphs. Saved as site/news/<version>.txt; the home page badge points at "
+               "other lines become paragraphs. Put commands in `backticks`. Saved as site/news/<version>.txt; the home page badge follows "
                "the newest version. Use - as the notes file to read from stdin.",
     )
     ap.add_argument("version", nargs="?")
@@ -204,8 +96,7 @@ def main():
         return
 
     write(target, text)
-    if becomes_latest:
-        point_home_page_at(args.version)
+    remember_date(args.version)
     rebuild()
     commit(f"News: Fiordland {args.version}")
     print(f"Posted https://fiordlandlinux.org/news/#v{args.version}")

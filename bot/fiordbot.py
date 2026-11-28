@@ -193,7 +193,7 @@ async def install(interaction: discord.Interaction):
 
 @bot.tree.command(description="Fiordland compared with CachyOS and Arch")
 async def compare(interaction: discord.Interaction):
-    await interaction.response.send_message(embed=embed("Fiordland, CachyOS and Arch", "What each one sets up after a default install.", f"{core.SITE}/compare/"))
+    await interaction.response.send_message(embed=embed("Fiordland, CachyOS and Arch", "What each one sets up after a default install.", f"{core.SITE}/why/#compare"))
 
 
 @bot.tree.command(description="Links to the site, source and repo")

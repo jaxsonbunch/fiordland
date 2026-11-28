@@ -20,7 +20,7 @@
 - [Apps](https://fiordlandlinux.org/docs/apps/)
 - [Snapshots and rollback](https://fiordlandlinux.org/docs/snapshots/)
 - [Getting help](https://fiordlandlinux.org/docs/help/)
-- [Fiordland vs CachyOS vs Arch](https://fiordlandlinux.org/compare/)
+- [Fiordland vs CachyOS vs Arch](https://fiordlandlinux.org/why/#compare)
 - [Why Fiordland, if you already run CachyOS](https://fiordlandlinux.org/why/)
 - [Fiordland on old and low-end PCs](https://fiordlandlinux.org/low-end/)
 - [News and release notes](https://fiordlandlinux.org/news/)

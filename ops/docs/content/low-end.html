@@ -1,0 +1,32 @@
+
+  <p class="eyebrow">Low-end PCs</p>
+  <h1 class="page">Fiordland on old and low-end PCs</h1>
+  <p class="lede">Fiordland is meant for a ten-year-old laptop as much as a new gaming desktop. The same install adapts to the machine it lands on.</p>
+
+  <section class="msec">
+    <h2 class="h3">What happens on a weak machine</h2>
+  <ul class="dlist">
+    <li><strong>A Low-end PC switch in the installer.</strong> It leaves out the gaming packages and 32-bit graphics drivers, and points you to the light desktops.</li>
+    <li><strong>Automatic tuning.</strong> <code>fiordland-tune</code> checks the hardware at boot. With less than 4 GB of memory, two CPU threads or no GPU acceleration it picks the low-end profile: zram swap as large as memory with zstd compression, small write-back buffers so the disk never stalls the desktop, and no proactive memory compaction.</li>
+    <li><strong>Runs on any 64-bit CPU.</strong> Packages are Arch's generic x86-64 builds and the Fiordland kernel targets the x86-64 baseline, so CPUs without AVX2 are fine.</li>
+    <li><strong>A responsive kernel.</strong> The Fiordland kernel uses the BORE scheduler, a 1000 Hz timer and full preemption, and keeps transparent huge pages on <code>madvise</code> so 4 to 8 GB machines don't waste memory.</li>
+    <li><strong>Out-of-memory protection.</strong> systemd-oomd stops a runaway app before the whole system freezes.</li>
+  </ul>
+  </section>
+  <section class="msec">
+    <h2 class="h3">Light desktops</h2>
+  <p>Full desktops that stay light: Xfce, LXQt, MATE and LXDE. Lighter still: Openbox, IceWM, Fluxbox, i3, labwc and Sway. You can switch later with weka, without reinstalling.</p>
+  </section>
+  <section class="msec">
+    <h2 class="h3">Change it by hand</h2>
+  <p><code>sudo fiordland-tune apply low-end</code>, <code>balanced</code> or <code>performance</code> picks a profile, <code>sudo fiordland-tune apply auto</code> goes back to detecting it, and <code>fiordland-tune status</code> shows what is in use.</p>
+  </section>
+  <section class="msec">
+    <h2 class="h3">Requirements</h2>
+  <ul class="dlist">
+    <li>Any 64-bit x86 PC.</li>
+    <li>4 GB of RAM recommended, 8 GB or more is better.</li>
+    <li>30 GB of disk.</li>
+  </ul>
+  </section>
+  <p class="note"><a href="/docs/install/">How to install</a> &middot; <a href="/why/">Why Fiordland</a></p>

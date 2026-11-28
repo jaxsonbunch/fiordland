@@ -1,4 +1,9 @@
-<h1 align="center">Fiordland Linux</h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/banner-dark.svg">
+    <img src=".github/banner-light.svg" alt="Fiordland Linux" width="420">
+  </picture>
+</p>
 
 <p align="center">Arch-based, fast and stable, with its own installer, package manager and shell.<br>
 Named after the Fiordland penguin, the tawaki.</p>

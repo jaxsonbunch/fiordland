@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The crest shell | Fiordland Linux</title>
+<meta name="description" content="The crest Hyprland shell: what is in it, how its colors and low end mode work, how to run it, its keyboard shortcuts and its IPC commands.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://fiordlandlinux.org/docs/crest/">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fiordlandlinux.org/docs/crest/">
+<meta property="og:title" content="The crest shell | Fiordland Linux">
+<meta property="og:description" content="The crest Hyprland shell: what is in it, how its colors and low end mode work, how to run it, its keyboard shortcuts and its IPC commands.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The crest shell | Fiordland Linux">
+<meta name="twitter:description" content="The crest Hyprland shell: what is in it, how its colors and low end mode work, how to run it, its keyboard shortcuts and its IPC commands.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://fiordlandlinux.org/docs/"},{"@type":"ListItem","position":3,"name":"The crest shell","item":"https://fiordlandlinux.org/docs/crest/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
+    </nav>
+    <a class="btn sm" href="/download/">Download</a>
+  </div>
+</header>
+<main id="main" class="wrap dlayout">
+<aside class="dside" aria-label="Docs navigation"><input id="dq" type="search" placeholder="Filter pages" aria-label="Filter docs pages"><div class="grp"><p>Getting started</p><ul><li><a href="/docs/install/">Install Fiordland</a></li><li><a href="/docs/first-steps/">First steps</a></li></ul></div><div class="grp"><p>Using Fiordland</p><ul><li><a href="/docs/apps/">Installing apps</a></li><li><a href="/docs/updates/">Updates</a></li><li><a href="/docs/snapshots/">Snapshots and rollback</a></li><li><a href="/docs/kernel/">The kernel</a></li><li><a href="/docs/crest/" aria-current="page">The crest shell</a></li><li><a href="/docs/live-wallpapers/">Live wallpapers</a></li></ul></div><div class="grp"><p>Help</p><ul><li><a href="/docs/help/">Getting help</a></li><li><a href="/wiki/">Community wiki</a></li></ul></div></aside>
+<article class="dmain">
+<h1>The crest shell</h1>
+<p class="lede">The Hyprland shell of <a href="https://fiordlandlinux.org">Fiordland Linux</a>, written in plain QML for <a href="https://quickshell.org">Quickshell</a>. There is no C++ plugin and nothing to compile.</p>
+<p>crest 1 is a rewrite of the earlier Caelestia based shell. It uses Material 3 Expressive shapes and spring motion, and puts translucent glass over Hyprland's blur.</p>
+<h2 id="what-s-in-it">What's in it</h2>
+<ul><li>a bar with a workspace pill that morphs between workspaces, a clock, the tray, and network, audio, battery and notification indicators</li><li>a launcher with fuzzy app search, a calculator (start with <code>=</code>) and emoji (start with <code>:</code>)</li><li>notification popups and a unified dashboard with notifications, calendar, music, system stats and clipboard history</li><li>quick settings for WiFi, Bluetooth, power profile, do not disturb and night light, plus volume and brightness sliders and media controls</li><li>Bluetooth pairing from quick settings: your devices, nearby devices, battery levels, and a prompt for pairing codes and PINs, answered through <code>bluetoothctl</code> running as the pairing agent</li><li>on screen displays for volume and brightness</li><li>a lock screen that uses <code>ext-session-lock</code> and PAM, with optional fingerprint unlock</li><li>a session menu, a workspace overview, a wallpaper picker and a settings window</li></ul>
+<p>Anything that isn't always on screen loads only when it's opened, so an idle desktop uses next to no CPU.</p>
+<h2 id="colours">Colours</h2>
+<p>When a wallpaper is set, <code>matugen</code> builds a Material colour scheme from it. When there is no wallpaper, or matugen fails, crest uses the Fiordland palette in <code>theme/Colours.qml</code>.</p>
+<h2 id="low-end-mode">Low end mode</h2>
+<p>Low end mode turns off blur, shadows and most animation. It switches on by itself under software rendering or with less than 4 GB of memory. You can also force it on or off under settings → performance.</p>
+<h2 id="running">Running</h2>
+<pre class="lang-sh"><code>qs -c crest</code></pre>
+<p>The package installs crest to <code>/etc/xdg/quickshell/crest</code>. Settings are saved to <code>~/.config/crest/config.json</code>, and the generated colour scheme is cached in <code>~/.local/state/crest</code>.</p>
+<h2 id="shortcuts-and-ipc">Shortcuts and IPC</h2>
+<p>Hyprland binds keys to crest's global shortcuts as <code>hl.dsp.global(&quot;crest:&lt;name&gt;&quot;)</code>. The names are <code>launcher</code>, <code>emoji</code>, <code>quicksettings</code>, <code>notifications</code>, <code>clearNotifs</code>, <code>session</code>, <code>lock</code>, <code>overview</code>, <code>wallpaper</code>, <code>settings</code>, <code>mediaToggle</code>, <code>mediaNext</code>, <code>mediaPrev</code>, <code>mediaStop</code>, <code>volumeUp</code>, <code>volumeDown</code>, <code>volumeMute</code>, <code>brightnessUp</code> and <code>brightnessDown</code>.</p>
+<p>Scripts can drive the same things over IPC:</p>
+<pre class="lang-sh"><code>qs -c crest ipc show
+qs -c crest ipc call launcher toggle
+qs -c crest ipc call lock lock</code></pre>
+<h2 id="the-greeter">The greeter</h2>
+<p><code>crest-greeter/</code>, at the top of the repository, holds the login screen for greetd. It reuses crest's <code>theme/</code> and <code>components/</code>.</p>
+<h2 id="development">Development</h2>
+<p><code>tools/crest-qml.sh lint</code> runs qmllint over crest and the greeter, <code>unit</code> runs the JS unit tests, and <code>render</code> draws the main surfaces offscreen to PNG files. CI runs all three.</p>
+<h2 id="credits">Credits</h2>
+<p>crest's look and behaviour draw on these GPL 3.0 projects, and some of crest's patterns are adapted from them. Thanks to their authors.</p>
+<ul><li><a href="https://github.com/caelestia-dots/shell">Caelestia shell</a> by the Caelestia contributors. The earlier crest shell was a fork of it.</li><li><a href="https://github.com/end-4/dots-hyprland">end 4's <code>dots-hyprland</code></a> and its <code>illogical-impulse</code> Quickshell config.</li><li><a href="https://quickshell.org">Quickshell</a> by outfoxxed and contributors, which crest is built on.</li></ul>
+<p>The shape and motion tokens follow Google's <a href="https://m3.material.io">Material 3 Expressive</a> guidelines. Icons come from Material Symbols Rounded.</p>
+<h2 id="license">License</h2>
+<p>GPL 3.0 only, see <a href="https://github.com/Fiordland-Linux/fiordland/blob/main/LICENSE">LICENSE</a>.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="pg prev" href="/docs/kernel/"><span>Previous</span>The kernel</a><a class="pg next" href="/docs/live-wallpapers/"><span>Next</span>Live wallpapers</a></nav>
+</article>
+<aside class="dtoc" aria-label="On this page"><p>On this page</p><ul id="toc"></ul></aside>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
+</footer>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
+</body>
+</html>

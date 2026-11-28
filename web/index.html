@@ -3,204 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fiordland Linux: fast, stable Arch-based distro</title>
-<meta name="description" content="A fast, stable Arch-based Linux distro for low-end and high-end PCs, with its own kernel, package manager, installer and desktop.">
-<meta name="theme-color" content="#131313">
-<meta name="author" content="Apollo (3cfl)">
+<title>Fiordland Linux</title>
+<meta name="description" content="A Linux distribution based on Arch, with its own installer, package manager and desktop shell. Btrfs snapshots, a tested stable channel and gaming ready.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://fiordlandlinux.org/">
 <meta property="og:title" content="Fiordland Linux">
-<meta property="og:description" content="A fast, stable Arch-based Linux distro for low-end and high-end PCs, with its own kernel, package manager, installer and desktop.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:description" content="A Linux distribution based on Arch, with its own installer, package manager and desktop shell. Btrfs snapshots, a tested stable channel and gaming ready.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:type" content="website">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fiordland Linux">
+<meta name="twitter:description" content="A Linux distribution based on Arch, with its own installer, package manager and desktop shell. Btrfs snapshots, a tested stable channel and gaming ready.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"Fiordland Linux","url":"https://fiordlandlinux.org/","logo":"https://fiordlandlinux.org/assets/og.png","sameAs":["https://github.com/Fiordland-Linux","https://discord.gg/gy4ANH2Q9V"],"founder":{"@type":"Person","name":"Apollo","alternateName":["3cfl","u5sk"],"url":"https://apollo44.lat","sameAs":["https://github.com/3cfl","https://apollo44.lat"]}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Fiordland Linux","applicationCategory":"OperatingSystem","operatingSystem":"Linux","url":"https://fiordlandlinux.org/","downloadUrl":"https://fiordlandlinux.org/iso/fiordland-latest.iso","softwareVersion":"1.0.0","description":"Arch-based Linux distribution with a stable snapshot channel, its own package manager (tawaki), update manager (kuaka), desktop switcher (weka), graphical installer (rawaru), Btrfs snapshots and its own linux-fiord kernel, based on the CachyOS kernel.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://www.gnu.org/licenses/gpl-3.0.html","isAccessibleForFree":true,"author":{"@type":"Person","name":"Apollo","alternateName":["3cfl","u5sk"],"url":"https://apollo44.lat","sameAs":["https://github.com/3cfl","https://apollo44.lat"]},"creator":{"@type":"Person","name":"Apollo","alternateName":["3cfl","u5sk"],"url":"https://apollo44.lat","sameAs":["https://github.com/3cfl","https://apollo44.lat"]}}]</script>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://fiordlandlinux.org/#org","name":"Fiordland Linux","url":"https://fiordlandlinux.org/","logo":"https://fiordlandlinux.org/assets/brand/icon-512.png","founder":{"@type":"Person","name":"Apollo","url":"https://apollo44.lat","sameAs":["https://github.com/3cfl"]},"sameAs":["https://github.com/Fiordland-Linux","https://discord.gg/gy4ANH2Q9V"]},{"@type":"WebSite","@id":"https://fiordlandlinux.org/#site","url":"https://fiordlandlinux.org/","name":"Fiordland Linux","publisher":{"@id":"https://fiordlandlinux.org/#org"}},{"@type":"SoftwareApplication","name":"Fiordland Linux","applicationCategory":"OperatingSystem","operatingSystem":"Linux","softwareVersion":"1.0.0","license":"https://www.gnu.org/licenses/gpl-3.0.html","downloadUrl":"https://fiordlandlinux.org/download/","url":"https://fiordlandlinux.org/","image":"https://fiordlandlinux.org/assets/og.png","description":"A Linux distribution based on Arch, with its own installer, package manager and desktop shell.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
-
-<main>
-  <section class="hero">
-    <div class="aurora" data-aurora data-stops="#1e3a8a,#3b82f6,#8ec5ff,#5eead4,#a78bfa" data-amplitude="1.1" data-blend=".55" data-layers="2" data-opacity=".85"></div>
-    <div class="wrap hero-in">
-      <a class="badge" href="/news/#v1.0.0"><span class="dot"></span><span class="shine">Fiordland 1 &middot; <span id="dl-ver">2026.11.26-3</span></span></a>
-      <h1 data-blur>Fiordland Linux</h1>
-      <p class="lede">Arch-based, with its own package manager, installer and desktop shell. Its own linux-fiord kernel (based on CachyOS), Btrfs snapshots and Flathub set up from the start. Steam, Proton-CachyOS, MangoHud and gamescope come installed.</p>
-      <div class="cta">
-        <a class="btn" data-iso href="/iso/fiordland-latest.iso">Download ISO</a>
-        <a class="btn ghost" href="https://github.com/Fiordland-Linux/fiordland">Source</a>
-        <a class="btn ghost" href="https://github.com/Fiordland-Linux/fiordland/issues">Report a bug</a>
-        <a class="btn ghost" href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      </div>
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <a class="badge" href="/news/#v1.0.0"><span class="dot"></span><span class="shine">Fiordland 1 &middot; <span id="dl-ver">2026.11.26 build 3</span></span></a>
+      <h1>Fiordland Linux</h1>
+      <p class="lede">Based on Arch, with its own installer, package manager and desktop shell. Its own kernel built on CachyOS, Btrfs snapshots and Flathub set up from the start. Steam, MangoHud and gamescope come installed.</p>
+      <div class="cta"><a class="btn" href="/download/">Download</a><a class="btn ghost" href="/why/">Why Fiordland</a></div>
       <p class="meta" id="dl-meta">x86_64 &middot; about 3 GB</p>
     </div>
-  </section>
-
-  <section class="wrap showcase" id="desktops">
-    <div class="tabs" role="tablist" aria-label="Desktops">
-      <span class="pill" aria-hidden="true"></span>
-      <button role="tab" id="t-plasma" aria-controls="p-plasma" aria-selected="true">KDE Plasma</button>
-      <button role="tab" id="t-niri" aria-controls="p-niri" aria-selected="false" tabindex="-1">niri + Noctalia</button>
-      <button role="tab" id="t-hypr" aria-controls="p-hypr" aria-selected="false" tabindex="-1">Hyprland + crest</button>
-    </div>
-    <div class="frame">
-      <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <figure role="tabpanel" id="p-plasma" aria-labelledby="t-plasma">
-        <img src="/assets/shots/plasma.webp?v=2" alt="KDE Plasma with Breeze Dark, Dolphin and Konsole running tawaki search" width="1920" height="1080">
-      </figure>
-      <figure role="tabpanel" id="p-niri" aria-labelledby="t-niri" hidden>
-        <img src="/assets/shots/niri.webp?v=2" alt="niri with the Noctalia bar, tawaki search results and btop in two columns" width="1920" height="1080" loading="lazy">
-      </figure>
-      <figure role="tabpanel" id="p-hypr" aria-labelledby="t-hypr" hidden>
-        <img src="/assets/shots/hyprland.webp?v=2" alt="Hyprland with crest, the Fiordland shell, showing its dashboard over kitty and Thunar" width="1920" height="1080" loading="lazy">
-      </figure>
-    </div>
-    <p class="cap">Real screenshots from a fresh install. Pick one of 24 desktops and window managers in the installer.</p>
-  </section>
-
-  <section class="wrap sec" id="features">
-    <h2 class="h2" data-blur>What's in it</h2>
-    <div class="bento">
-      <article class="card c-tawaki rise">
-        <div class="card-in">
-          <h3>tawaki</h3>
-          <p>One command for the Arch repos, Flathub and the AUR. Installs from the cleanest source and skips Flatpaks that would pull in a large runtime.</p>
-          <pre class="term" aria-label="Output of tawaki search ncspot"><span class="ps">~</span> <span class="cmd">tawaki search ncspot</span>
-<span class="pm">[pacman]</span> extra/<b class="nm">ncspot</b> <span class="v">1.5.0-2</span>
-    Cross-platform ncurses Spotify client written in Rust
-<span class="fp">[flatpak]</span> <b class="nm">io.github.hrkfdn.ncspot</b> <span class="v">1.5.0</span> (ncspot)
-    Cross-platform ncurses Spotify client
-<span class="au">[aur]</span> <b class="nm">ncspot-git</b> <span class="v">1.3.1-1</span>
-<span class="au">[aur]</span> <b class="nm">ncspot-ncurses</b> <span class="v">1.5.1-1</span></pre>
-        </div>
-      </article>
-      <article class="card c-rawaru rise">
-        <div class="card-in">
-          <h3>rawaru</h3>
-          <p>Graphical installer. Gets you online over Wi&#8209;Fi first, ranks mirrors, detects the GPU and offers dotfiles for each window manager.</p>
-        </div>
-        <img class="peek" src="/assets/shots/installer.webp?v=2" alt="The rawaru installer on the desktop step, with Hyprland and its shell options" width="2080" height="1400" loading="lazy">
-      </article>
-      <article class="card c-crest rise">
-        <div class="card-in">
-          <h3>crest</h3>
-          <p>A Hyprland shell forked from Caelestia: bar, dashboard, launcher, lock screen and settings, themed for Fiordland.</p>
-        </div>
-      </article>
-      <article class="card rise">
-        <div class="card-in">
-          <span class="ico" aria-hidden="true">&#9889;</span>
-          <h3>linux-fiord kernel</h3>
-          <p>Default kernel, built on CachyOS's, with the Arch kernel kept as a boot option.</p>
-        </div>
-      </article>
-      <article class="card rise">
-        <div class="card-in">
-          <span class="ico" aria-hidden="true">&#8634;</span>
-          <h3>Snapshots</h3>
-          <p>Btrfs with a snapshot before every update.</p>
-        </div>
-      </article>
-      <article class="card rise">
-        <div class="card-in">
-          <span class="ico" aria-hidden="true">&#9638;</span>
-          <h3>Flathub</h3>
-          <p>Set up on first boot, next to multilib for Steam and Wine.</p>
-        </div>
-      </article>
-      <article class="card c-kuaka rise">
-        <div class="card-in">
-          <h3>Kuaka</h3>
-          <p>Update manager. System and Flatpak updates in one window, with a snapshot taken first.</p>
-        </div>
-      </article>
-      <article class="card c-wide rise">
-        <div class="card-in">
-          <h3>24 desktops and window managers</h3>
-          <ul class="chips">
-            <li>Plasma</li><li>GNOME</li><li>COSMIC</li><li>Xfce</li><li>Cinnamon</li><li>Budgie</li><li>MATE</li>
-            <li>Hyprland</li><li>niri</li><li>Sway</li><li>labwc</li><li>i3</li><li>bspwm</li><li>awesome</li>
-          </ul>
-          <p class="sub">Shells and dotfiles</p>
-          <ul class="chips alt">
-            <li>crest</li><li>Noctalia</li><li>Dux</li><li>Caelestia</li><li>illogical-impulse</li><li>HyDE</li><li>ML4W</li><li>JaKooLit</li><li>iNiR</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="wrap sec">
-    <a class="card cmp-teaser rise" href="/compare/">
-      <div class="card-in">
-        <p class="eyebrow">Compare</p>
-        <h3>Fiordland, CachyOS and Arch, side by side.</h3>
-        <p>What each sets up after a default install, including where CachyOS is ahead.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">&rarr;</span>
-    </a>
-  </section>
-
-  <section class="wrap sec" id="install">
-    <h2 class="h2" data-blur>Install</h2>
-    <ol class="steps">
-      <li class="card rise"><div class="card-in"><span class="n">01</span><h3>Write the ISO</h3><p>To a USB stick with Ventoy, Fedora Media Writer or dd.</p></div></li>
-      <li class="card rise"><div class="card-in"><span class="n">02</span><h3>Boot it</h3><p>Try the live Plasma session, nothing is touched.</p></div></li>
-      <li class="card rise"><div class="card-in"><span class="n">03</span><h3>Install</h3><p>Pick a desktop and go. Whole disk, next to Windows, or your own partitions. New releases come as updates.</p></div></li>
-    </ol>
-    <div class="dl rise">
-      <a class="btn" data-iso href="/iso/fiordland-latest.iso">Download ISO</a>
-      <p class="note">Needs 4 GB RAM and 20 GB disk.</p>
-      <p class="sum">SHA256 <code id="dl-sum">loading</code> <button class="copy" data-copy="#dl-sum">Copy</button></p>
-    </div>
-  </section>
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/news/">News</a>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland/issues">Report a bug</a>
-    <a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <a class="rb" href="/assets/js/LICENSE-react-bits.txt">Effects from React Bits</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+    <div class="laptop"><div class="lid"><img src="/assets/shots/plasma.webp" alt="The Fiordland live session: KDE Plasma with Breeze Dark, Dolphin and Konsole running tawaki search" width="1920" height="1080"></div><div class="base"></div></div>
   </div>
+  <svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg>
+</section>
+<section class="band" id="inside" aria-labelledby="inside-h">
+  <div class="wrap">
+    <h2 id="inside-h">What is inside</h2>
+    <p class="sub">Fiordland ships its own installer, package manager and shell. Pick a part to see it.</p>
+    <div class="zen-grid">
+      <div class="zen-list" role="tablist" aria-orientation="vertical" aria-label="Parts of Fiordland"><button class="zt" role="tab" id="t-tawaki" aria-controls="p-tawaki" aria-selected="true"><b>tawaki</b><span class="zd"><span class="zi">One command for the Arch repos, Flathub and the AUR. It installs from the cleanest source and skips Flatpaks that would pull in a large runtime.</span></span></button><button class="zt" role="tab" id="t-rawaru" aria-controls="p-rawaru" aria-selected="false" tabindex="-1"><b>rawaru installer</b><span class="zd"><span class="zi">A graphical installer. Choose from 11 desktops and 13 window managers, install next to Windows or on a whole disk, and get Btrfs snapshots, zram and the right GPU driver.</span></span></button><button class="zt" role="tab" id="t-crest" aria-controls="p-crest" aria-selected="false" tabindex="-1"><b>crest</b><span class="zd"><span class="zi">The Fiordland shell for Hyprland, built on Quickshell: bar, dashboard, launcher, lock screen and settings, with colors taken from your wallpaper.</span></span></button><button class="zt" role="tab" id="t-plasma" aria-controls="p-plasma" aria-selected="false" tabindex="-1"><b>KDE Plasma</b><span class="zd"><span class="zi">The default live session and desktop, with Breeze Dark. Pick any of 24 desktops and window managers in the installer, or swap later with the Desktops app.</span></span></button><button class="zt" role="tab" id="t-niri" aria-controls="p-niri" aria-selected="false" tabindex="-1"><b>niri with Noctalia</b><span class="zd"><span class="zi">Scrollable tiling on Wayland with the Noctalia shell, one of the dotfile sets the installer can set up for you.</span></span></button></div>
+      <div class="zen-view"><div class="zp on" role="tabpanel" id="p-tawaki" aria-labelledby="t-tawaki" aria-hidden="false"><pre class="term"><code>tawaki install firefox steam
+tawaki search obs
+tawaki update
+tawaki install foo --from aur</code></pre><p>Packages are looked up in all three sources at once. A prebuilt package is preferred over a Flatpak that would pull in a large runtime you do not have yet.</p><a class="more" href="/docs/apps/">Read the tawaki guide</a></div><div class="zp" role="tabpanel" id="p-rawaru" aria-labelledby="t-rawaru" aria-hidden="true"><img src="/assets/shots/installer.webp?v=2" alt="The rawaru installer on the desktop step, with Hyprland and its shell options" width="1920" height="1080" loading="lazy"><a class="more" href="/docs/install/">Read the install guide</a></div><div class="zp" role="tabpanel" id="p-crest" aria-labelledby="t-crest" aria-hidden="true"><img src="/assets/shots/hyprland.webp?v=2" alt="Hyprland with crest, the Fiordland shell, showing its dashboard over kitty and Thunar" width="1920" height="1080" loading="lazy"><a class="more" href="/docs/crest/">About crest</a></div><div class="zp" role="tabpanel" id="p-plasma" aria-labelledby="t-plasma" aria-hidden="true"><img src="/assets/shots/plasma.webp?v=2" alt="KDE Plasma with Breeze Dark, Dolphin and Konsole running tawaki search" width="1920" height="1080" loading="lazy"><a class="more" href="/software/">See all the software</a></div><div class="zp" role="tabpanel" id="p-niri" aria-labelledby="t-niri" aria-hidden="true"><img src="/assets/shots/niri.webp?v=2" alt="niri with the Noctalia bar, tawaki search results and btop in two columns" width="1920" height="1080" loading="lazy"><a class="more" href="/software/">See all the software</a></div></div>
+    </div>
+  </div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V50L110 34L200 54L330 16L440 46L560 28L690 60L800 24L930 52L1040 20L1170 50L1290 30L1440 56V80Z"/></svg>
+</section>
+<section class="plain-sec" id="latest" aria-labelledby="latest-h">
+  <div class="wrap split">
+    <div><h2 id="latest-h">Fiordland 1</h2><p class="sub"><time datetime="2026-11-26">26 November 2026</time></p><a class="more" href="/news/">Read the release notes</a></div>
+    <ul class="news-list"><li>Fiordland is out of beta. Installed systems move to Fiordland 1 with a normal update; nothing needs reinstalling.</li><li>New <code>linux-fiord</code> kernel, our fork of the CachyOS kernel with BORE, built for the x86_64 baseline so it also runs on older CPUs. Pick it in the installer or switch with <code>sudo fiordland kernel fiord</code>.</li><li>crest 1, a new Hyprland shell in the Material 3 Expressive style, with <code>crest-greeter</code> as its login screen.</li><li>tawaki 1.0, kuaka 1.0 and weka 1.1: one command for the Arch repos, Flathub and the AUR, a redesigned update manager with tray notices, and a redesigned desktop switcher.</li></ul>
+  </div>
+</section>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-
-<script src="/assets/js/aurora.js?v=1" defer></script>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

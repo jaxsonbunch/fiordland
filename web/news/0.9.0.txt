@@ -1,4 +1,4 @@
 Fiordland 0.9.0, the public beta.
-- Updates now carry system changes too: run tawaki update and your install keeps up with new ISOs. No reinstall needed.
-- New installs use GRUB: older snapshots can be started from the boot menu, and sudo fiordland-rollback makes one permanent.
+- Updates now carry system changes too: run `tawaki update` and your install keeps up with new ISOs. No reinstall needed.
+- New installs use GRUB: older snapshots can be started from the boot menu, and `sudo fiordland-rollback` makes one permanent.
 - The installer can put Fiordland next to Windows or on partitions you choose.

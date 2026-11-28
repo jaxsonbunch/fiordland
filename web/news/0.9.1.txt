@@ -1,4 +1,4 @@
 Fiordland 0.9.1
-- New stable channel: Arch packages now come from a tested snapshot that moves forward every two weeks, after install, update and boot tests pass. Security fixes arrive sooner. To get packages the day Arch releases them instead: fiordland-channel rolling
+- New stable channel: Arch packages now come from a tested snapshot that moves forward every two weeks, after install, update and boot tests pass. Security fixes arrive sooner. To get packages the day Arch releases them instead: `fiordland-channel rolling`
 - The installer cleans up when you press Try again, and shows the reason when something fails.
-- Gaming packages: Steam, proton-cachyos, wine-cachyos, umu-launcher, protontricks, gamemode, MangoHud and gamescope now come with Fiordland and install in the background after this update. To remove them: sudo pacman -Rns fiordland-gaming
+- Gaming packages: Steam, `proton-cachyos`, `wine-cachyos`, `umu-launcher`, protontricks, gamemode, MangoHud and gamescope now come with Fiordland and install in the background after this update. To remove them: `sudo pacman -Rns fiordland-gaming`

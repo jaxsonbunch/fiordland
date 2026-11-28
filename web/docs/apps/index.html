@@ -3,88 +3,134 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Installing apps &middot; Fiordland Linux</title>
-<meta name="description" content="Find, install, update and remove apps with tawaki.">
-<meta name="theme-color" content="#131313">
+<title>Installing apps | Fiordland Linux</title>
+<meta name="description" content="Install, remove, search and update software with tawaki, which uses pacman, Flathub and the AUR, with its settings, update channels and AUR safety notes.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/docs/apps/">
-<meta property="og:url" content="https://fiordlandlinux.org/docs/apps/">
-<meta property="og:title" content="Installing apps">
-<meta property="og:description" content="Find, install, update and remove apps with tawaki.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:url" content="https://fiordlandlinux.org/docs/apps/">
+<meta property="og:title" content="Installing apps | Fiordland Linux">
+<meta property="og:description" content="Install, remove, search and update software with tawaki, which uses pacman, Flathub and the AUR, with its settings, update channels and AUR safety notes.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Installing apps | Fiordland Linux">
+<meta name="twitter:description" content="Install, remove, search and update software with tawaki, which uses pacman, Flathub and the AUR, with its settings, update channels and AUR safety notes.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://fiordlandlinux.org/docs/"},{"@type":"ListItem","position":3,"name":"Installing apps","item":"https://fiordlandlinux.org/docs/apps/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/" aria-current="page">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
-
-<main class="wrap main-pad">
-  <p class="eyebrow"><a href="/docs/">Docs</a></p>
-  <h1 class="page">Installing apps</h1>
-  <p class="lede">Find, install, update and remove apps with tawaki.</p>
-  <section class="msec">
-    <h2 class="h3">How it works</h2>
-    <p>tawaki searches three places at once: the Arch repositories, Flathub and the AUR. It installs from the repos when it can, then Flathub, then the AUR. If a Flatpak would pull in a large runtime you do not have yet, it picks a prebuilt package instead.</p>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Commands</h2>
-    <div class="card plain"><table class="cmp dcmd"><tbody><tr><th scope="row"><code>tawaki install NAME</code></th><td>Install an app. Short: <code>i NAME</code></td></tr><tr><th scope="row"><code>tawaki remove NAME</code></th><td>Remove it, wherever it came from</td></tr><tr><th scope="row"><code>tawaki update</code></th><td>Update everything. Short: <code>up</code></td></tr><tr><th scope="row"><code>tawaki search WORDS</code></th><td>Search all three sources</td></tr><tr><th scope="row"><code>tawaki list</code></th><td>List apps installed with tawaki</td></tr><tr><th scope="row"><code>tawaki install NAME --from flatpak</code></th><td>Force a source: <code>pacman</code>, <code>flatpak</code> or <code>aur</code></td></tr></tbody></table></div>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Settings</h2>
-    <p>Edit <code>~/.config/tawaki/config.toml</code> to change the order or turn off the light-package check:</p>
-    <pre class="term">priority = [&quot;pacman&quot;, &quot;flatpak&quot;, &quot;aur&quot;]
-prefer_light = true</pre>
-  </section>
-  <section class="msec">
-    <h2 class="h3">About the AUR</h2>
-    <p>AUR packages are build scripts uploaded by users. Nobody at Arch or Fiordland reviews them. Prefer repo and Flathub packages, and only install from the AUR when you trust the package.</p>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Other tools still work</h2>
-    <p><code>pacman</code> and <code>flatpak</code> work as usual. tawaki is a front end, not a replacement. No AUR helper is installed: tawaki builds AUR packages with <code>makepkg</code> and shows you the build script first. If you install <code>paru</code> or <code>yay</code> yourself, tawaki uses it.</p>
-  </section>
-  <nav class="dpager" aria-label="Docs pages"><a class="dp" href="/docs/first-steps/"><span>Previous</span>First steps</a><a class="dp nx" href="/docs/updates/"><span>Next</span>Updates</a></nav>
+<main id="main" class="wrap dlayout">
+<aside class="dside" aria-label="Docs navigation"><input id="dq" type="search" placeholder="Filter pages" aria-label="Filter docs pages"><div class="grp"><p>Getting started</p><ul><li><a href="/docs/install/">Install Fiordland</a></li><li><a href="/docs/first-steps/">First steps</a></li></ul></div><div class="grp"><p>Using Fiordland</p><ul><li><a href="/docs/apps/" aria-current="page">Installing apps</a></li><li><a href="/docs/updates/">Updates</a></li><li><a href="/docs/snapshots/">Snapshots and rollback</a></li><li><a href="/docs/kernel/">The kernel</a></li><li><a href="/docs/crest/">The crest shell</a></li><li><a href="/docs/live-wallpapers/">Live wallpapers</a></li></ul></div><div class="grp"><p>Help</p><ul><li><a href="/docs/help/">Getting help</a></li><li><a href="/wiki/">Community wiki</a></li></ul></div></aside>
+<article class="dmain">
+<h1>Installing apps</h1>
+<p class="lede"><a href="https://github.com/Fiordland-Linux/tawaki">tawaki</a> is Fiordland's package manager. One command installs, removes and updates software, wherever it comes from.</p>
+<h2 id="where-software-comes-from">Where software comes from</h2>
+<p>tawaki looks in three places at once:</p>
+<div class="tbl"><table><thead><tr><th scope="col">Source</th><th scope="col">What it is</th></tr></thead><tbody><tr><td><code>pacman</code></td><td>The system repositories: Arch Linux, Fiordland and CachyOS. Signed packages.</td></tr><tr><td><code>flatpak</code></td><td>Flathub, the app store for Flatpak apps. They run in a sandbox and bring their own runtimes.</td></tr><tr><td><code>aur</code></td><td>The Arch User Repository. Build scripts uploaded by users. Nobody at Arch or Fiordland reviews them.</td></tr></tbody></table></div>
+<p>"Cleanest source" means the first place in your priority list that has the package: <code>pacman</code>, then <code>flatpak</code>, then <code>aur</code>. You can change the order in the <a href="#settings">config</a>.</p>
+<p>One exception. If the first match is a Flatpak that needs a runtime of 50 MB or more that you do not have yet, tawaki takes a prebuilt package from another source instead, when there is one, and tells you how much it skipped. Turn this off with <code>prefer_light = false</code>.</p>
+<h2 id="commands">Commands</h2>
+<pre><code>tawaki install NAME...      i
+tawaki remove NAME...       r, rm
+tawaki update               u, up
+tawaki check
+tawaki search WORDS...      s
+tawaki list                 ls</code></pre>
+<h3 id="install">install</h3>
+<pre><code>tawaki install firefox steam
+tawaki install foo --from aur</code></pre>
+<p>It searches, prints one line per package showing which sources have it and which one it picked, then asks <code>Proceed with installation?</code>. Names are checked first, and anything that is not a valid package name (lowercase letters, digits and <code>@ . _ + -</code>) is refused. A package that is already installed is reported and skipped. If a name is found nowhere, nothing is installed.</p>
+<p><code>--from</code> forces a source: <code>pacman</code>, <code>flatpak</code> or <code>aur</code>. <code>-y</code> skips the questions.</p>
+<h3 id="remove">remove</h3>
+<pre><code>tawaki remove firefox</code></pre>
+<p>Lists what it will remove and asks to confirm. It removes the package wherever it came from, including packages you installed with plain <code>pacman</code> or <code>flatpak</code>. <code>-y</code> skips the question.</p>
+<h3 id="update">update</h3>
+<pre><code>tawaki update</code></pre>
+<p>Counts what is waiting in each source, asks <code>Update now?</code>, then updates the system with <code>pacman -Syu</code>, then AUR packages, then Flatpaks. It asks for your password through <code>sudo</code>. <code>-y</code> skips the questions.</p>
+<p>Before the system update, it deletes any <code>.sig</code> file in <code>/var/lib/pacman/sync</code> that is really an HTML error page left by a failed download, so the update does not stop on it.</p>
+<p>When a system update changes the Fiordland release number, tawaki prints it, for example <code>Fiordland 0.9.0 -&gt; 1.0.0</code>, with that release's notes. System changes that ship with a release are applied once, after the pre update snapshot. See <a href="/docs/snapshots/">snapshots and rollback</a> for what to do if an update goes wrong.</p>
+<h3 id="update-channel">Update channel</h3>
+<p>Arch packages arrive through one of two channels. <code>stable</code> is a snapshot of the Arch repos that moves forward every two weeks, after Fiordland's install, update and boot tests pass. Security fixes arrive sooner. <code>rolling</code> gets packages the day Arch releases them: newer and less tested. Stable is the default.</p>
+<pre><code>fiordland-channel
+fiordland-channel rolling
+fiordland-channel stable</code></pre>
+<p>Without an argument it prints the current channel. With one it switches (it asks for your password through <code>sudo</code>), then run <code>tawaki update</code> to sync.</p>
+<h3 id="check">check</h3>
+<pre><code>tawaki check
+tawaki check --json</code></pre>
+<p>Lists pending updates without installing anything. <code>--json</code> prints them for other programs; the Kuaka update app uses it.</p>
+<h3 id="search">search</h3>
+<pre><code>tawaki search obs
+tawaki search obs --from flatpak</code></pre>
+<p>Searches every source at once, or only the one you name.</p>
+<h3 id="list">list</h3>
+<pre><code>tawaki list
+tawaki list --from aur</code></pre>
+<p>Lists the packages that were installed with tawaki, with their source. Packages you installed another way are not shown. The list is kept in <code>~/.local/share/tawaki/installed.json</code>.</p>
+<h2 id="settings">Settings</h2>
+<p>tawaki works without any configuration. To change it, create <code>~/.config/tawaki/config.toml</code>. These are the defaults:</p>
+<pre class="lang-toml"><code>priority = [&quot;pacman&quot;, &quot;flatpak&quot;, &quot;aur&quot;]
+aur_helper = &quot;auto&quot;
+flatpak_scope = &quot;user&quot;
+flatpak_remote = &quot;flathub&quot;
+prefer_light = true</code></pre>
+<div class="tbl"><table><thead><tr><th scope="col">Key</th><th scope="col">Values</th></tr></thead><tbody><tr><td><code>priority</code></td><td>The order sources are tried in. A source you leave out is still searched, after the ones you list.</td></tr><tr><td><code>aur_helper</code></td><td><code>auto</code> uses <code>paru</code> or <code>yay</code> if one is installed. <code>paru</code> or <code>yay</code> pick one. <code>none</code> always builds with <code>makepkg</code>.</td></tr><tr><td><code>flatpak_scope</code></td><td><code>user</code> installs Flatpaks for your account only. <code>system</code> installs them for everyone.</td></tr><tr><td><code>flatpak_remote</code></td><td>The Flatpak remote to search.</td></tr><tr><td><code>prefer_light</code></td><td><code>true</code> avoids Flatpaks that would pull in a large new runtime.</td></tr></tbody></table></div>
+<p>A mistake in the file is reported with its path and tawaki stops, rather than guessing.</p>
+<h2 id="about-the-aur">About the AUR</h2>
+<p>AUR packages are build scripts, and building one runs code from a stranger. Prefer <code>pacman</code> and <code>flatpak</code>, and use <code>--from aur</code> only for packages you trust.</p>
+<p>tawaki warns you before an AUR install. Unless you pass <code>-y</code>, it then asks <code>Review PKGBUILD for NAME?</code> (the default answer is yes). If you say yes, it opens the <code>PKGBUILD</code> in your pager (<code>$PAGER</code>, or <code>less</code>) and asks once more before building.</p>
+<p>No AUR helper is installed by default. Without one, tawaki builds with <code>makepkg</code> and does not resolve dependencies that are only in the AUR. Install <code>paru</code> or <code>yay</code> yourself if you need that, and tawaki will use it.</p>
+<h2 id="other-tools-still-work">Other tools still work</h2>
+<p><code>pacman</code> and <code>flatpak</code> work as usual. tawaki is a front end, not a replacement. Flathub's catalogue refreshes in the background through <code>tawaki-catalogue.timer</code>, so searches never wait on it.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="pg prev" href="/docs/first-steps/"><span>Previous</span>First steps</a><a class="pg next" href="/docs/updates/"><span>Next</span>Updates</a></nav>
+</article>
+<aside class="dtoc" aria-label="On this page"><p>On this page</p><ul id="toc"></ul></aside>
 </main>
-
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
   </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

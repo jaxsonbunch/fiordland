@@ -3,75 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>News &middot; Fiordland Linux</title>
-<meta name="description" content="Release notes for each Fiordland version.">
-<meta name="theme-color" content="#131313">
+<title>News | Fiordland Linux</title>
+<meta name="description" content="Release notes for every Fiordland Linux version, from the 0.9.0 public beta to Fiordland 1, with what changed and how to update.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/news/">
-<meta property="og:url" content="https://fiordlandlinux.org/news/">
-<meta property="og:title" content="Fiordland news">
-<meta property="og:description" content="Release notes for each Fiordland version.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://fiordlandlinux.org/news/">
+<meta property="og:title" content="News | Fiordland Linux">
+<meta property="og:description" content="Release notes for every Fiordland Linux version, from the 0.9.0 public beta to Fiordland 1, with what changed and how to update.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta name="twitter:title" content="News | Fiordland Linux">
+<meta name="twitter:description" content="Release notes for every Fiordland Linux version, from the 0.9.0 public beta to Fiordland 1, with what changed and how to update.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"News","item":"https://fiordlandlinux.org/news/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
-
-<main class="wrap main-pad">
-  <h1 class="page">News</h1>
-  <p class="lede">What changed in each Fiordland release. Installed systems get these with <code>tawaki update</code>.</p>
-  <section class="msec" id="v1.0.0">
-    <h2 class="h3">Fiordland 1</h2>
-    <p class="eyebrow">2026-11-26 &middot; <a href="/news/1.0.0.txt">plain text</a></p>
-    <ul class="dlist"><li>Fiordland is out of beta. Installed systems move to Fiordland 1 with a normal update; nothing needs reinstalling.</li><li>New linux-fiord kernel, our fork of the CachyOS kernel with BORE, built for the x86-64 baseline so it also runs on older CPUs. Pick it in the installer or switch with sudo fiordland kernel fiord.</li><li>crest 1, a new Hyprland shell in the Material 3 Expressive style, with crest-greeter as its login screen.</li><li>tawaki 1.0, kuaka 1.0 and weka 1.1: one command for the Arch repos, Flathub and the AUR, a redesigned update manager with tray notices, and a redesigned desktop switcher.</li><li>The rawaru installer 2.0 is redesigned, checks your disk and settings before it starts, and has a Low-end PC switch.</li><li>Restarting and shutting down no longer hang. Services get 10 seconds to stop (your own apps 5), and if something still blocks, the system restarts anyway after 3 minutes instead of waiting forever.</li><li>Faster start: the boot no longer waits for the network, and the Btrfs snapshot watcher and mirror refresh run in the background.</li><li>New fiordland-tune picks lighter settings on its own on PCs with less than 4 GB of memory, two CPU threads or no graphics acceleration. Switch by hand with sudo fiordland-tune apply low-end, balanced or performance. Try the sched_ext schedulers with sudo fiordland-tune scx lavd (needs scx-scheds).</li><li>One front door: fiordland version, news, tune, report, channel, kernel and dns. fiordland report collects details for a bug report; nothing is uploaded.</li><li>Now included: firewall on by default, printing with network printer discovery, Bluetooth, firmware updates (fwupd), disk health tools, CJK and emoji fonts, audio and video codecs with hardware decoding, plocate, and monthly Btrfs scrubs. Snapshots from updates are trimmed to the newest 10.</li><li>Optional: encrypted DNS with sudo fiordland dns tls and a Btrfs swap file with sudo fiordland-tune swapfile 8.</li><li>Updated install image 2026.11.26-3: the installer asks you to join Wi&#8209;Fi before it starts, retries slow downloads, and the crest lock screen accepts your password every time.</li></ul>
-  </section>
-  <section class="msec" id="v0.9.1">
-    <h2 class="h3">Fiordland 0.9.1</h2>
-    <p class="eyebrow">2026-11-24 &middot; <a href="/news/0.9.1.txt">plain text</a></p>
-    <ul class="dlist"><li>New stable channel: Arch packages now come from a tested snapshot that moves forward every two weeks, after install, update and boot tests pass. Security fixes arrive sooner. To get packages the day Arch releases them instead: fiordland-channel rolling</li><li>The installer cleans up when you press Try again, and shows the reason when something fails.</li><li>Gaming packages: Steam, proton-cachyos, wine-cachyos, umu-launcher, protontricks, gamemode, MangoHud and gamescope now come with Fiordland and install in the background after this update. To remove them: sudo pacman -Rns fiordland-gaming</li></ul>
-  </section>
-  <section class="msec" id="v0.9.0">
-    <h2 class="h3">Fiordland 0.9.0, the public beta.</h2>
-    <p class="eyebrow">2026-11-24 &middot; <a href="/news/0.9.0.txt">plain text</a></p>
-    <ul class="dlist"><li>Updates now carry system changes too: run tawaki update and your install keeps up with new ISOs. No reinstall needed.</li><li>New installs use GRUB: older snapshots can be started from the boot menu, and sudo fiordland-rollback makes one permanent.</li><li>The installer can put Fiordland next to Windows or on partitions you choose.</li></ul>
-  </section>
+<section class="page-head"><div class="wrap"><h1>News</h1><p class="lede">What changed in each Fiordland release. Installed systems get these with <code>tawaki update</code>.</p></div><svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg></section>
+<main id="main" class="wrap page">
+<section class="release" id="v1.0.0"><h2>Fiordland 1</h2><p class="date"><time datetime="2026-11-26">26 November 2026</time> &middot; <a href="/news/1.0.0.txt">plain text</a></p><ul><li>Fiordland is out of beta. Installed systems move to Fiordland 1 with a normal update; nothing needs reinstalling.</li><li>New <code>linux-fiord</code> kernel, our fork of the CachyOS kernel with BORE, built for the x86_64 baseline so it also runs on older CPUs. Pick it in the installer or switch with <code>sudo fiordland kernel fiord</code>.</li><li>crest 1, a new Hyprland shell in the Material 3 Expressive style, with <code>crest-greeter</code> as its login screen.</li><li>tawaki 1.0, kuaka 1.0 and weka 1.1: one command for the Arch repos, Flathub and the AUR, a redesigned update manager with tray notices, and a redesigned desktop switcher.</li><li>The rawaru installer 2.0 is redesigned, checks your disk and settings before it starts, and has a Low end PC switch.</li><li>Restarting and shutting down no longer hang. Services get 10 seconds to stop (your own apps 5), and if something still blocks, the system restarts anyway after 3 minutes instead of waiting forever.</li><li>Faster start: the boot no longer waits for the network, and the Btrfs snapshot watcher and mirror refresh run in the background.</li><li>New <code>fiordland-tune</code> picks lighter settings on its own on PCs with less than 4 GB of memory, two CPU threads or no graphics acceleration. Switch by hand with <code>sudo fiordland-tune apply low-end</code>, <code>balanced</code> or <code>performance</code>. Try the sched_ext schedulers with <code>sudo fiordland-tune scx lavd</code> (needs <code>scx-scheds</code>).</li><li>One front door: <code>fiordland version</code>, <code>news</code>, <code>tune</code>, <code>report</code>, <code>channel</code>, <code>kernel</code> and <code>dns</code>. <code>fiordland report</code> collects details for a bug report; nothing is uploaded.</li><li>Now included: firewall on by default, printing with network printer discovery, Bluetooth, firmware updates (fwupd), disk health tools, CJK and emoji fonts, audio and video codecs with hardware decoding, plocate, and monthly Btrfs scrubs. Snapshots from updates are trimmed to the newest 10.</li><li>Optional: encrypted DNS with <code>sudo fiordland dns tls</code> and a Btrfs swap file with <code>sudo fiordland-tune swapfile 8</code>.</li><li>Updated install image 2026.11.26 build 3: the installer asks you to join WiFi before it starts, retries slow downloads, and the crest lock screen accepts your password every time.</li></ul></section>
+<section class="release" id="v0.9.1"><h2>Fiordland 0.9.1</h2><p class="date"><time datetime="2026-11-24">24 November 2026</time> &middot; <a href="/news/0.9.1.txt">plain text</a></p><ul><li>New stable channel: Arch packages now come from a tested snapshot that moves forward every two weeks, after install, update and boot tests pass. Security fixes arrive sooner. To get packages the day Arch releases them instead: <code>fiordland-channel rolling</code></li><li>The installer cleans up when you press Try again, and shows the reason when something fails.</li><li>Gaming packages: Steam, <code>proton-cachyos</code>, <code>wine-cachyos</code>, <code>umu-launcher</code>, protontricks, gamemode, MangoHud and gamescope now come with Fiordland and install in the background after this update. To remove them: <code>sudo pacman -Rns fiordland-gaming</code></li></ul></section>
+<section class="release" id="v0.9.0"><h2>Fiordland 0.9.0, the public beta.</h2><p class="date"><time datetime="2026-11-24">24 November 2026</time> &middot; <a href="/news/0.9.0.txt">plain text</a></p><ul><li>Updates now carry system changes too: run <code>tawaki update</code> and your install keeps up with new ISOs. No reinstall needed.</li><li>New installs use GRUB: older snapshots can be started from the boot menu, and <code>sudo fiordland-rollback</code> makes one permanent.</li><li>The installer can put Fiordland next to Windows or on partitions you choose.</li></ul></section>
 </main>
-
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-    <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
   </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

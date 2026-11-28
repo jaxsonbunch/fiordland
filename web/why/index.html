@@ -3,106 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why Fiordland instead of CachyOS &middot; Fiordland Linux</title>
-<meta name="description" content="What Fiordland Linux adds over CachyOS, what both share, and where CachyOS is ahead.">
-<meta name="theme-color" content="#131313">
+<title>Why Fiordland | Fiordland Linux</title>
+<meta name="description" content="What Fiordland Linux does differently from CachyOS and Arch, what they all do, what CachyOS does better, and a side by side table.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/why/">
-<meta property="og:url" content="https://fiordlandlinux.org/why/">
-<meta property="og:title" content="Why Fiordland, if you already run CachyOS">
-<meta property="og:description" content="What Fiordland Linux adds over CachyOS, what both share, and where CachyOS is ahead.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:url" content="https://fiordlandlinux.org/why/">
+<meta property="og:title" content="Why Fiordland | Fiordland Linux">
+<meta property="og:description" content="What Fiordland Linux does differently from CachyOS and Arch, what they all do, what CachyOS does better, and a side by side table.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Fiordland | Fiordland Linux">
+<meta name="twitter:description" content="What Fiordland Linux does differently from CachyOS and Arch, what they all do, what CachyOS does better, and a side by side table.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Fiordland Linux","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Why Fiordland","item":"https://fiordlandlinux.org/why/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why use Fiordland instead of CachyOS?","acceptedAnswer":{"@type":"Answer","text":"Fiordland adds a tested stable channel built from Arch snapshots, system fixes that arrive with updates as one-time migrations, bootable Btrfs snapshots with one-command rollback, tawaki (one package manager for the Arch repos, Flathub and the AUR), its own installer and apps, and automatic tuning for low-end hardware."}},{"@type":"Question","name":"Does Fiordland use the CachyOS kernel?","acceptedAnswer":{"@type":"Answer","text":"Fiordland 1 ships linux-fiord, its own fork of the CachyOS kernel packaging, built from the same CachyOS kernel source with the BORE scheduler, 1000 Hz timer, BBRv3 and x86-64 baseline builds so it runs on any 64-bit PC. The CachyOS kernel and the stock Arch kernel can still be chosen in the installer."}},{"@type":"Question","name":"What does CachyOS do better than Fiordland?","acceptedAnswer":{"@type":"Answer","text":"CachyOS rebuilds the Arch repositories for x86-64-v3 and v4 CPUs, enables ananicy-cpp with a large rules set, offers more kernel variants and has a longer track record. Fiordland 1 is the first release out of beta."}},{"@type":"Question","name":"Is Fiordland free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fiordland Linux is free and open source, and every tool it ships is on GitHub."}}]}</script>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why use Fiordland instead of CachyOS?","acceptedAnswer":{"@type":"Answer","text":"Fiordland adds a tested stable channel built from Arch snapshots, system fixes that arrive with updates as one time migrations, bootable Btrfs snapshots with one command rollback, tawaki (one package manager for the Arch repos, Flathub and the AUR), its own installer and apps, and automatic tuning for low end hardware."}},{"@type":"Question","name":"Does Fiordland use the CachyOS kernel?","acceptedAnswer":{"@type":"Answer","text":"Fiordland 1 ships linux fiord, its own fork of the CachyOS kernel packaging, built from the same CachyOS kernel source with the BORE scheduler, 1000 Hz timer, BBRv3 and x86_64 baseline builds so it runs on any 64 bit PC. The CachyOS kernel and the stock Arch kernel can still be chosen in the installer."}},{"@type":"Question","name":"What does CachyOS do better than Fiordland?","acceptedAnswer":{"@type":"Answer","text":"CachyOS rebuilds the Arch repositories for x86_64 v3 and v4 CPUs, enables ananicy cpp with a large rules set, offers more kernel variants and has a longer track record. Fiordland 1 is the first release out of beta."}},{"@type":"Question","name":"Is Fiordland free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fiordland Linux is free and open source, and every tool it ships is on GitHub."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Why Fiordland","item":"https://fiordlandlinux.org/why/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
-
-<main class="wrap main-pad">
-  <p class="eyebrow">Why Fiordland</p>
-  <h1 class="page">Why Fiordland, if you already run CachyOS</h1>
-  <p class="lede">CachyOS is a fast, well-run Arch distribution, and Fiordland builds on its kernel and gaming packages. This page says what Fiordland does differently, so you can decide whether that matters to you. Where CachyOS does something better or equally well, it says so.</p>
-
-  <section class="msec">
-    <h2 class="h3">What Fiordland adds</h2>
-  <ul class="dlist">
-    <li><strong>A tested stable channel.</strong> Arch packages come from a snapshot that moves forward every two weeks, after Fiordland's install, update and boot tests pass. Security fixes arrive sooner. CachyOS follows Arch as it lands, which is newer but less tested. If you want that on Fiordland too: <code>fiordland-channel rolling</code>.</li>
-    <li><strong>Its own kernel, linux-fiord.</strong> A fork of the CachyOS kernel packaging with the BORE scheduler, a 1000 Hz timer, full preemption, BBRv3 networking and NTSYNC built in. It is built for the x86-64 baseline, so it runs on any 64-bit PC, old or new.</li>
-    <li><strong>System changes arrive with updates.</strong> Fixes to an installed system ship as numbered migrations in <code>fiordland-base</code>. Each runs once, after the update or at boot. You never need to reinstall to get a newer ISO's defaults.</li>
-    <li><strong>Snapshots you can boot and keep.</strong> Every install is Btrfs with snapper. Each package update takes a snapshot, older snapshots show up in the boot menu, and <code>sudo fiordland-rollback</code> makes the one you booted permanent.</li>
-    <li><strong>One package manager for three sources.</strong> <a href="https://github.com/Fiordland-Linux/tawaki">tawaki</a> installs from pacman, Flathub or the AUR, picks the cleanest source, and avoids pulling a large Flatpak runtime when a native package exists.</li>
-    <li><strong>Its own tools.</strong> The rawaru installer with 11 desktops and 13 window managers, kuaka for updates and weka to switch desktops.</li>
-    <li><strong>Settings that pick themselves on weak hardware.</strong> <code>fiordland-tune</code> detects machines with less than 4 GB of memory, two CPU threads or no GPU acceleration and uses lighter memory settings on its own. See <a href="/low-end/">Fiordland on old and low-end PCs</a>.</li>
-    <li><strong>Fast, clean shutdowns.</strong> Short service stop timeouts and a hard limit on reboot and power-off, so a stuck service can't hold the machine at "The system will reboot now".</li>
-    <li><strong>Plain bug reports.</strong> <code>fiordland report</code> writes the details a bug report needs to one file in your home folder, with your user and host names replaced. Nothing is uploaded.</li>
-  </ul>
-  </section>
-  <section class="msec">
-    <h2 class="h3">What both do</h2>
-  <ul class="dlist">
-    <li>CachyOS kernel option, sched_ext schedulers (<code>fiordland-tune scx lavd</code>), zram, systemd-oomd, the CachyOS Proton and Wine builds, Steam and gaming tools.</li>
-    <li>Firewall on by default, printing, Bluetooth, firmware updates, codecs and hardware video decoding out of the box.</li>
-  </ul>
-  </section>
-  <section class="msec">
-    <h2 class="h3">What CachyOS does that Fiordland does not</h2>
-  <ul class="dlist">
-    <li><strong>x86-64-v3 and v4 package builds.</strong> CachyOS rebuilds the Arch repos for newer CPUs. Fiordland uses Arch's generic x86-64 packages, so one install runs on any 64-bit PC, and the stable channel can test exactly what Arch ships.</li>
-    <li><strong>ananicy-cpp with a large rules set</strong>, enabled by default. Fiordland ships systemd-oomd and leaves process priorities alone. ananicy-cpp is in the Arch repos if you want it.</li>
-    <li><strong>More kernels and a longer track record.</strong> CachyOS has several kernel variants and years of users. Fiordland 1 is the first release out of beta.</li>
-  </ul>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Security</h2>
-  <ul class="dlist">
-    <li>The firewall (ufw) denies incoming connections by default, and keeps SSH and KDE Connect working when you use them.</li>
-    <li>Encrypted DNS is one command away: <code>sudo fiordland dns tls</code>.</li>
-    <li>AppArmor is available from the Arch repos; the <a href="/wiki/">wiki</a> explains how to turn it on.</li>
-  </ul>
-  </section>
-  <p class="note">See the full table at <a href="/compare/">Fiordland, CachyOS and Arch</a>.</p>
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+<section class="page-head"><div class="wrap"><h1>Why Fiordland</h1><p class="lede">CachyOS is a fast, well run Arch distribution, and Fiordland uses its kernel and gaming packages. This page says what Fiordland does differently, so you can decide whether that matters to you. Where CachyOS does something better or equally well, it says so.</p></div><svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg></section>
+<main id="main" class="wrap page">
+<h2 id="what-fiordland-adds">What Fiordland adds</h2>
+<ul><li><strong>A tested stable channel.</strong> Arch packages come from a snapshot that moves forward every two weeks, after Fiordland's install, update and boot tests pass. Security fixes arrive sooner. CachyOS follows Arch as it lands, which is newer but less tested. If you want that on Fiordland too: <code>fiordland-channel rolling</code>.</li><li><strong>System changes arrive with updates.</strong> Fixes to an installed system (service defaults, timeouts, snapshot limits) ship as numbered migrations in <code>fiordland-base</code>. Each runs once, after the update or at boot, and is written to be safe twice. You never need to reinstall to get a newer ISO's defaults.</li><li><strong>Snapshots you can boot and keep.</strong> Every install is Btrfs with snapper. Each package update takes a snapshot, older snapshots show up in the GRUB menu, and <code>sudo fiordland-rollback</code> makes the one you booted permanent.</li><li><strong>One package manager for three sources.</strong> tawaki installs from pacman, Flathub or the AUR, picks the cleanest source, and avoids pulling a large Flatpak runtime when a native package exists.</li><li><strong>Its own tools.</strong> The rawaru installer with 11 desktops and 13 window managers, kuaka for updates and weka to switch desktops.</li><li><strong>Settings that pick themselves on weak hardware.</strong> <code>fiordland-tune</code> detects machines with less than 4 GB of memory, two CPU threads or no GPU acceleration and uses lighter memory settings on its own. You can switch to <code>low-end</code>, <code>balanced</code> or <code>performance</code> by hand.</li><li><strong>Plain bug reports.</strong> <code>fiordland report</code> writes the details a bug report needs to one file in your home folder, with your user and host names replaced. Nothing is uploaded.</li></ul>
+<h2 id="what-both-do">What both do</h2>
+<ul><li>CachyOS kernel, sched_ext schedulers (<code>fiordland-tune scx lavd</code>), zram, <code>systemd-oomd</code>, the CachyOS Proton and Wine builds, Steam and gaming tools.</li><li>Firewall on by default, printing, Bluetooth, firmware updates, codecs and hardware video decoding out of the box.</li></ul>
+<h2 id="what-cachyos-does-that-fiordland-does-not">What CachyOS does that Fiordland does not</h2>
+<ul><li><strong>x86_64 v3 and v4 package builds.</strong> CachyOS rebuilds the Arch repos for newer CPUs. Fiordland uses Arch's generic x86_64 packages, so one install runs on any 64 bit PC, and the stable channel can test exactly what Arch ships.</li><li><strong><code>ananicy-cpp</code> with a large rules set</strong>, enabled by default. Fiordland ships <code>systemd-oomd</code> and leaves process priorities alone. <code>ananicy-cpp</code> is in the Arch repos if you want it.</li><li><strong>More kernels and a longer track record.</strong> CachyOS has several kernel variants and years of users. Fiordland 1 is the first release out of beta.</li></ul>
+<h2 id="security-notes">Security notes</h2>
+<ul><li>The firewall (ufw) denies incoming connections by default and allows mDNS so network printers still show up.</li><li>AppArmor is available (<code>sudo pacman -S apparmor</code>). Turning it on needs <code>lsm=landlock,lockdown,yama,integrity,apparmor,bpf</code> on the kernel command line in <code>/etc/default/grub</code>, then <code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code> and <code>sudo systemctl enable apparmor</code>. It is not on by default because most desktop apps ship no profiles yet.</li><li>Encrypted DNS is one command away: <code>sudo fiordland dns tls</code>.</li></ul>
+<section class="sec" id="compare"><h2>Compared with CachyOS and Arch</h2><p>What each one sets up for you after a default install.</p>
+  <div class="cmp-wrap card plain">
+    <table class="cmp">
+      <thead><tr><td class="f"></td>
+        <th scope="col" class="f"><img src="/assets/brand/mark.svg" alt="" width="64" height="34"><span>Fiordland</span></th>
+        <th scope="col"><img src="/assets/logos/cachyos.svg" alt="" width="40" height="40"><span>CachyOS</span></th>
+        <th scope="col"><img src="/assets/logos/arch.svg" alt="" width="40" height="40"><span>Arch</span></th></tr></thead>
+      <tbody>
+      <tr class="g"><th colspan="4" scope="colgroup">Only on Fiordland</th></tr>
+      <tr><th scope="row">One command that picks the repo, Flathub or the AUR for you</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Skips a Flatpak when it would pull in a large runtime you don't have</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Flathub set up on first boot</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Caelestia, end 4, HyDE, ML4W, JaKooLit, Dux and iNiR in the installer</th><td class="y f" aria-label="Yes">&#10003;</td><td class="p">Noctalia only</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Stable channel: Arch packages from a tested snapshot that moves forward every two weeks, with security fixes sooner</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Steam, MangoHud and gamescope installed by default</th><td class="y f" aria-label="Yes">&#10003;</td><td class="p">Optional</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Its own kernel: BORE, 1000 Hz, BBRv3, runs on any 64 bit CPU</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">System fixes arrive with updates, no reinstall for new defaults</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Picks lighter settings by itself on low end PCs</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">One command bug report with names removed</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">CachyOS kernel and stock Arch kernel also offered in the installer</th><td class="y f" aria-label="Yes">&#10003;</td><td class="p">CachyOS kernels only</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Its own Hyprland shell, crest, with a matching login and lock screen</th><td class="y f" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr class="g"><th colspan="4" scope="colgroup">Shared with CachyOS</th></tr>
+      <tr><th scope="row">Graphical installer</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="p">Text installer</td></tr>
+      <tr><th scope="row">CachyOS kernel</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">GPU driver detection</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Btrfs snapshot before every update</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">zram swap</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Multilib for Steam and Wine</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr><th scope="row">Choice of desktops and window managers at install</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td></tr>
+      <tr><th scope="row">Arch repos and the AUR</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td></tr>
+      <tr><th scope="row">Gaming packages like <code>proton-cachyos</code></th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="p">AUR</td></tr>
+      <tr><th scope="row">Boot into an older snapshot from the boot menu</th><td class="y f" aria-label="Yes">&#10003;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      <tr class="g"><th colspan="4" scope="colgroup">Where CachyOS is ahead</th></tr>
+      <tr><th scope="row">Packages rebuilt for x86_64 v3 and v4 CPUs</th><td class="n f" aria-label="No">&#10007;</td><td class="y" aria-label="Yes">&#10003;</td><td class="n" aria-label="No">&#10007;</td></tr>
+      </tbody>
+    </table>
   </div>
+  <p class="note">Checked against the CachyOS November 2026 release and archinstall. Everything here can be added to Arch by hand. Sources: <a href="https://cachyos.org/blog/">CachyOS blog</a>, <a href="https://wiki.cachyos.org/">CachyOS wiki</a>, <a href="https://wiki.archlinux.org/title/Archinstall">ArchWiki</a>.</p>
+</section>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

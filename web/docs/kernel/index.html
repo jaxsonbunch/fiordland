@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fiordland kernel | Fiordland Linux</title>
+<meta name="description" content="What the Fiordland kernel changes from CachyOS and Arch, why, how to switch to it and back, how to build it and how to change its behaviour at runtime.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://fiordlandlinux.org/docs/kernel/">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fiordlandlinux.org/docs/kernel/">
+<meta property="og:title" content="The Fiordland kernel | Fiordland Linux">
+<meta property="og:description" content="What the Fiordland kernel changes from CachyOS and Arch, why, how to switch to it and back, how to build it and how to change its behaviour at runtime.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Fiordland kernel | Fiordland Linux">
+<meta name="twitter:description" content="What the Fiordland kernel changes from CachyOS and Arch, why, how to switch to it and back, how to build it and how to change its behaviour at runtime.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://fiordlandlinux.org/docs/"},{"@type":"ListItem","position":3,"name":"The Fiordland kernel","item":"https://fiordlandlinux.org/docs/kernel/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
+    </nav>
+    <a class="btn sm" href="/download/">Download</a>
+  </div>
+</header>
+<main id="main" class="wrap dlayout">
+<aside class="dside" aria-label="Docs navigation"><input id="dq" type="search" placeholder="Filter pages" aria-label="Filter docs pages"><div class="grp"><p>Getting started</p><ul><li><a href="/docs/install/">Install Fiordland</a></li><li><a href="/docs/first-steps/">First steps</a></li></ul></div><div class="grp"><p>Using Fiordland</p><ul><li><a href="/docs/apps/">Installing apps</a></li><li><a href="/docs/updates/">Updates</a></li><li><a href="/docs/snapshots/">Snapshots and rollback</a></li><li><a href="/docs/kernel/" aria-current="page">The kernel</a></li><li><a href="/docs/crest/">The crest shell</a></li><li><a href="/docs/live-wallpapers/">Live wallpapers</a></li></ul></div><div class="grp"><p>Help</p><ul><li><a href="/docs/help/">Getting help</a></li><li><a href="/wiki/">Community wiki</a></li></ul></div></aside>
+<article class="dmain">
+<h1>The Fiordland kernel</h1>
+<p class="lede"><code>linux-fiord</code> is Fiordland's own kernel. It is a fork of the <a href="https://github.com/CachyOS/linux-cachyos">CachyOS</a> kernel packaging, built from the same signed CachyOS kernel source, with defaults picked so one package works well on a ten year old laptop and on a current gaming desktop.</p>
+<p>It ships as two packages:</p>
+<div class="tbl"><table><thead><tr><th scope="col">Package</th><th scope="col">What it has</th></tr></thead><tbody><tr><td><code>linux-fiord</code></td><td>The kernel image, modules and <code>/usr/lib/sysctl.d/70-linux-fiord.conf</code>. Provides <code>NTSYNC-MODULE</code>, <code>WIREGUARD-MODULE</code>, <code>KSMBD-MODULE</code>, <code>V4L2LOOPBACK-MODULE</code>, <code>VHBA-MODULE</code>, <code>VIRTUALBOX-GUEST-MODULES</code>, <code>ADIOS-MODULE</code>.</td></tr><tr><td><code>linux-fiord-headers</code></td><td>Everything DKMS needs to build out of tree modules (NVIDIA, VirtualBox, ZFS and so on). Provides <code>LINUX-HEADERS</code>.</td></tr></tbody></table></div>
+<p><code>uname -r</code> shows the flavour, for example <code>7.3.6-1-fiord</code>.</p>
+<h2 id="defaults">Defaults</h2>
+<div class="tbl"><table><thead><tr><th scope="col">Setting</th><th scope="col"><code>linux-fiord</code></th><th scope="col"><code>linux-cachyos</code> PKGBUILD default</th><th scope="col">Arch <code>linux</code></th></tr></thead><tbody><tr><td>CPU scheduler</td><td>BORE on top of EEVDF</td><td>EEVDF (BORE is a build option)</td><td>EEVDF</td></tr><tr><td>sched_ext</td><td>on</td><td>on</td><td>on</td></tr><tr><td>Timer</td><td>1000 Hz, tickless</td><td>1000 Hz, tickless</td><td>300 Hz</td></tr><tr><td>Preemption</td><td>full, with <code>PREEMPT_DYNAMIC</code></td><td>full</td><td>dynamic</td></tr><tr><td>Compiler</td><td>GCC, <code>-O2</code>, no LTO</td><td>Clang ThinLTO, <code>-O3</code></td><td>GCC, <code>-O2</code></td></tr><tr><td>CPU target</td><td>x86_64 baseline (v1)</td><td>native for local builds, v3/v4 in the CachyOS repos</td><td>x86_64 baseline</td></tr><tr><td>TCP congestion control</td><td>BBRv3 with the <code>fq</code> qdisc</td><td>CUBIC</td><td>CUBIC</td></tr><tr><td>NTSYNC</td><td>built in</td><td>module</td><td>module</td></tr><tr><td>Transparent huge pages</td><td><code>madvise</code></td><td><code>always</code></td><td></td></tr><tr><td>zswap</td><td>built in, off by default, zstd</td><td>on by default, zstd</td><td></td></tr><tr><td>zram</td><td>lz4 and zstd backends, zstd default</td><td>same</td><td></td></tr><tr><td>MGLRU</td><td>on</td><td>on</td><td>on</td></tr><tr><td>Module compression</td><td>zstd</td><td>zstd</td><td>zstd</td></tr></tbody></table></div>
+<p>Security hardening is kept as CachyOS ships it: the lockdown LSM is built in and can be enabled with <code>lockdown=integrity</code> or <code>lockdown=confidentiality</code>, landlock and yama are active, <code>init_on_alloc</code> is on by default, kernel stack offsets are randomised on every syscall, and Intel IBT, the strong stack protector, hardened usercopy and hardened freelists stay on. Clang CFI is not enabled in CachyOS's config and stays off here, since the default build uses GCC.</p>
+<h3 id="why-these-choices">Why these choices</h3>
+<ul><li><strong>x86_64 v1.</strong> CachyOS's optimised repos need x86_64 v3 or v4, which leaves out older CPUs that are otherwise fine for a desktop. <code>linux-fiord</code> runs on any 64 bit x86 CPU. The kernel itself gains little from v3, because it does not use vector instructions in hot paths.</li><li><strong>1000 Hz.</strong> BORE's default minimum slice is 2 ms, and with a 1 ms tick the scheduler can end a slice on time instead of rounding it up to the next tick (3.3 ms at 300 Hz). The idle cost is close to zero, because idle CPUs stop the tick. The extra interrupts on a busy core cost well under 1% even on old dual core machines, and desktops feel the latency more than the throughput.</li><li>**Full preemption with <code>PREEMPT_DYNAMIC</code>.** Best latency by default, and anyone who wants throughput can boot with <code>preempt=voluntary</code> or <code>preempt=lazy</code>, without a different kernel.</li><li>**GCC <code>-O2</code>, no LTO.** The package has to build reliably inside the 6 hour GitHub Actions limit. ThinLTO with Clang is a few percent faster in some benchmarks but much slower and heavier to build, and every DKMS module would then need Clang. GCC also matches what DKMS uses by default.</li><li>**THP <code>madvise</code>.** <code>always</code> can waste a lot of memory on machines with 4 to 8 GB. Programs that benefit from huge pages, such as databases, JVMs and some games, ask for them with <code>madvise</code>.</li><li><strong>zswap off by default.</strong> Fiordland sets up zram swap, and running zswap in front of zram compresses every page twice. If you use a swap file or partition instead, turn zswap on with <code>zswap.enabled=1</code>.</li><li>**BBRv3 with <code>fq</code>.** Better throughput and lower latency on lossy links such as WiFi, and it is fair to CUBIC flows.</li><li><strong>NTSYNC built in.</strong> Wine and Proton find <code>/dev/ntsync</code> without loading a module.</li><li><strong>Debug options.</strong> <code>SCHEDSTATS</code>, <code>PM_DEBUG</code> and the stack tracer are off. BTF debug info stays, because sched_ext and BPF tools need it.</li></ul>
+<p>The sysctl file sets <code>vm.max_map_count = 1048576</code>, which some games and Proton titles need. This is the same value Arch's <code>filesystem</code> package uses; shipping it with the kernel keeps it if that changes.</p>
+<p>Everything above is a config fragment (<code>packages/linux-fiord/fiord.config</code>) applied over the CachyOS config, plus the BORE patch from CachyOS's <code>kernel-patches</code> repo. There are no Fiordland specific kernel patches. The build stops if any line of the fragment does not end up in the final config.</p>
+<h3 id="changing-behaviour-at-runtime">Changing behaviour at runtime</h3>
+<div class="tbl"><table><thead><tr><th scope="col">What</th><th scope="col">How</th></tr></thead><tbody><tr><td>Preemption model</td><td><code>preempt=none</code>, <code>voluntary</code>, <code>full</code> or <code>lazy</code> on the kernel command line</td></tr><tr><td>BORE</td><td><code>sysctl kernel.sched_bore=0</code> to fall back to plain EEVDF</td></tr><tr><td>sched_ext schedulers</td><td>install <code>scx-scheds</code> and run one, for example <code>sudo scx_lavd</code></td></tr><tr><td>TCP congestion control</td><td><code>sysctl net.ipv4.tcp_congestion_control=cubic</code></td></tr><tr><td>Transparent huge pages</td><td><code>echo always | sudo tee /sys/kernel/mm/transparent_hugepage/enabled</code></td></tr><tr><td>zswap</td><td><code>zswap.enabled=1</code> on the kernel command line</td></tr></tbody></table></div>
+<h2 id="switching-to-linux-fiord">Switching to <code>linux-fiord</code></h2>
+<p>Keep a second kernel installed (the stock Arch <code>linux</code> or <code>linux-cachyos</code>) so you can boot it if something goes wrong.</p>
+<pre><code>sudo pacman -S linux-fiord linux-fiord-headers
+sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+<p>mkinitcpio builds the initramfs as part of the install. Reboot and pick <code>linux-fiord</code> under "Advanced options" in GRUB, then check with <code>uname -r</code>. To boot it by default, add <code>GRUB_TOP_LEVEL=&quot;/boot/vmlinuz-linux-fiord&quot;</code> to <code>/etc/default/grub</code> and run <code>grub-mkconfig</code> again.</p>
+<h3 id="nvidia">NVIDIA</h3>
+<p>The prebuilt <code>linux-cachyos-nvidia-open</code> module only matches the CachyOS kernel. With <code>linux-fiord</code>, use the DKMS module, which builds against <code>linux-fiord-headers</code> on every kernel update:</p>
+<pre><code>sudo pacman -S nvidia-open-dkms</code></pre>
+<p>Other DKMS modules (<code>virtualbox-host-dkms</code>, <code>zfs-dkms</code>, <code>v4l2loopback-dkms</code>) work the same way. Modules built by DKMS are not signed with the kernel's build key, so they will not load if you enable lockdown or <code>module.sig_enforce=1</code>.</p>
+<h3 id="going-back">Going back</h3>
+<pre><code>sudo pacman -Rns linux-fiord linux-fiord-headers
+sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+<p>Remove <code>GRUB_TOP_LEVEL</code> from <code>/etc/default/grub</code> first if you set it.</p>
+<h2 id="building">Building</h2>
+<pre><code>cd packages/linux-fiord
+gpg --import keys/pgp/*.asc
+makepkg -s</code></pre>
+<p>Build options, set in the environment:</p>
+<div class="tbl"><table><thead><tr><th scope="col">Variable</th><th scope="col">Values</th><th scope="col">Default</th></tr></thead><tbody><tr><td><code>_processor_opt</code></td><td><code>generic_v1</code>, <code>generic_v2</code>, <code>generic_v3</code>, <code>generic_v4</code>, <code>zen4</code>, <code>native</code></td><td><code>generic_v1</code></td></tr><tr><td><code>_use_llvm_lto</code></td><td><code>none</code>, <code>thin</code>, <code>full</code></td><td><code>none</code></td></tr></tbody></table></div>
+<p>For example <code>_processor_opt=generic_v3 makepkg -s</code> builds for Haswell, Zen 1 and newer. A <code>thin</code> or <code>full</code> LTO build uses Clang, and its headers package then depends on Clang so DKMS can build modules.</p>
+<p><code>./build.sh</code> reuses the published <code>linux-fiord</code> packages when their version is already in the repo, and only builds the kernel when <code>pkgver</code> or <code>pkgrel</code> changed. <code>REBUILD=1</code> does not rebuild the kernel; use <code>REBUILD_KERNEL=1</code> for that.</p>
+<h3 id="updating-to-a-new-cachyos-release">Updating to a new CachyOS release</h3>
+<ol><li>Set <code>_major</code>, <code>_minor</code> and <code>_tagrel</code> to the new <a href="https://github.com/CachyOS/linux/releases">CachyOS/linux</a> tag and reset <code>pkgrel</code> to 1.</li><li>Take <code>config</code> from the same version of <a href="https://github.com/CachyOS/linux-cachyos/tree/master/linux-cachyos"><code>linux-cachyos</code></a>, and point <code>_patchcommit</code> at the <a href="https://github.com/CachyOS/kernel-patches"><code>kernel-patches</code></a> commit that matches it.</li><li>Run <code>updpkgsums</code>, then <code>makepkg --verifysource</code> to check the source signature against the keys in <code>keys/pgp</code>. The <code>dkms-clang.patch</code> hashes in the LTO branch of the PKGBUILD are not touched by <code>updpkgsums</code>; update them by hand with <code>sha256sum</code> and <code>b2sum</code>.</li><li>Push a branch. The <code>kernel</code> workflow applies the patches and the config fragment, builds both packages, runs namcap and builds <code>nvidia-open-dkms</code> against the new headers.</li></ol>
+<nav class="pager" aria-label="Previous and next page"><a class="pg prev" href="/docs/snapshots/"><span>Previous</span>Snapshots and rollback</a><a class="pg next" href="/docs/crest/"><span>Next</span>The crest shell</a></nav>
+</article>
+<aside class="dtoc" aria-label="On this page"><p>On this page</p><ul id="toc"></ul></aside>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
+</footer>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
+</body>
+</html>

@@ -3,98 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snapshots and rollback &middot; Fiordland Linux</title>
-<meta name="description" content="Undo a bad update with Btrfs snapshots.">
-<meta name="theme-color" content="#131313">
+<title>Snapshots and rollback | Fiordland Linux</title>
+<meta name="description" content="Undo a bad update on Fiordland Linux with Btrfs snapshots, from a running system or from the GRUB menu when it does not boot.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/docs/snapshots/">
-<meta property="og:url" content="https://fiordlandlinux.org/docs/snapshots/">
-<meta property="og:title" content="Snapshots and rollback">
-<meta property="og:description" content="Undo a bad update with Btrfs snapshots.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:url" content="https://fiordlandlinux.org/docs/snapshots/">
+<meta property="og:title" content="Snapshots and rollback | Fiordland Linux">
+<meta property="og:description" content="Undo a bad update on Fiordland Linux with Btrfs snapshots, from a running system or from the GRUB menu when it does not boot.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Snapshots and rollback | Fiordland Linux">
+<meta name="twitter:description" content="Undo a bad update on Fiordland Linux with Btrfs snapshots, from a running system or from the GRUB menu when it does not boot.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://fiordlandlinux.org/docs/"},{"@type":"ListItem","position":3,"name":"Snapshots and rollback","item":"https://fiordlandlinux.org/docs/snapshots/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/" aria-current="page">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
-
-<main class="wrap main-pad">
-  <p class="eyebrow"><a href="/docs/">Docs</a></p>
-  <h1 class="page">Snapshots and rollback</h1>
-  <p class="lede">Undo a bad update with Btrfs snapshots.</p>
-  <section class="msec">
-    <h2 class="h3">What is saved</h2>
-    <p>Fiordland uses Btrfs and <a href="https://wiki.archlinux.org/title/Snapper">snapper</a>. A snapshot is a frozen copy of the system, not your home folder. Snapshots are taken before and after every package change, and every hour (5 hourly, 7 daily, 2 weekly and 1 monthly are kept).</p>
-    <pre class="term">snapper -c root list</pre>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Undo an update while the system works</h2>
-    <p>Find the snapshot pair for the bad update in the list (the <em>pre</em> and <em>post</em> numbers), then:</p>
-    <pre class="term">sudo snapper -c root undochange PRE..POST</pre>
-    <p>Restart afterwards.</p>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Roll back when the system does not boot</h2>
-    <ol class="msteps">
-      <li><h3>Pick a snapshot</h3><p>Restart, open <strong>Fiordland snapshots</strong> in the boot menu and pick one from before the problem. Each entry shows its date and what caused it.</p></li>
-      <li><h3>Check it works</h3><p>The system starts from the snapshot. Changes made now are kept in memory and lost at the next restart.</p></li>
-      <li><h3>Make it permanent</h3><pre class="term">sudo fiordland-rollback</pre><p>Restart, and Fiordland starts from the restored system. Your home folder is not touched.</p></li>
-      <li><h3>Free the space</h3><pre class="term">sudo fiordland-rollback --clean</pre><p>Deletes the old system once everything works.</p></li>
-    </ol>
-    <p>Each snapshot carries its own kernel, so this also undoes a bad kernel update. To restore by number without booting it first, use <code>fiordland-rollback --list</code> and then <code>sudo fiordland-rollback N</code>.</p>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Installs from before 23 November 2026</h2>
-    <p>Older installs use systemd-boot, so the snapshot menu is not there. Boot the USB stick, open a terminal, and:</p>
-    <pre class="term">lsblk -f
-sudo mount -o subvolid=5 /dev/nvme0n1p2 /mnt
+<main id="main" class="wrap dlayout">
+<aside class="dside" aria-label="Docs navigation"><input id="dq" type="search" placeholder="Filter pages" aria-label="Filter docs pages"><div class="grp"><p>Getting started</p><ul><li><a href="/docs/install/">Install Fiordland</a></li><li><a href="/docs/first-steps/">First steps</a></li></ul></div><div class="grp"><p>Using Fiordland</p><ul><li><a href="/docs/apps/">Installing apps</a></li><li><a href="/docs/updates/">Updates</a></li><li><a href="/docs/snapshots/" aria-current="page">Snapshots and rollback</a></li><li><a href="/docs/kernel/">The kernel</a></li><li><a href="/docs/crest/">The crest shell</a></li><li><a href="/docs/live-wallpapers/">Live wallpapers</a></li></ul></div><div class="grp"><p>Help</p><ul><li><a href="/docs/help/">Getting help</a></li><li><a href="/wiki/">Community wiki</a></li></ul></div></aside>
+<article class="dmain">
+<h1>Snapshots and rollback</h1>
+<p class="lede">Fiordland keeps snapshots of the system, so a bad update can be undone.</p>
+<h2 id="what-is-saved">What is saved</h2>
+<p>The installer puts Fiordland on Btrfs with these subvolumes:</p>
+<div class="tbl"><table><thead><tr><th scope="col">Subvolume</th><th scope="col">Mounted at</th></tr></thead><tbody><tr><td><code>@</code></td><td><code>/</code></td></tr><tr><td><code>@home</code></td><td><code>/home</code></td></tr><tr><td><code>@log</code></td><td><code>/var/log</code></td></tr><tr><td><code>@pkg</code></td><td><code>/var/cache/pacman/pkg</code></td></tr><tr><td><code>@snapshots</code></td><td><code>/.snapshots</code></td></tr></tbody></table></div>
+<p><a href="https://wiki.archlinux.org/title/Snapper">snapper</a> snapshots <code>/</code> through its <code>root</code> config. Because <code>/home</code>, the logs and the package cache are separate subvolumes, they are not part of a snapshot and a rollback never changes them. Snapshots are not backups of your files.</p>
+<p>Snapshots are taken:</p>
+<ul><li>Before and after every package change, as a pre and post pair (<code>snap-pac</code>).</li><li>Every hour. snapper keeps 5 hourly, 7 daily, 2 weekly and 1 monthly snapshot, and no yearly ones.</li></ul>
+<p>List them:</p>
+<pre><code>snapper -c root list</code></pre>
+<p><code>sudo fiordland-rollback --list</code> prints the same list.</p>
+<h2 id="undo-an-update-while-the-system-works">Undo an update while the system works</h2>
+<p>Find the pre and post numbers of the bad update in the list, then:</p>
+<pre><code>sudo snapper -c root undochange PRE..POST</code></pre>
+<p>Restart afterwards.</p>
+<h2 id="go-back-when-the-system-does-not-boot">Go back when the system does not boot</h2>
+<ol><li>Restart. In the GRUB menu open <strong>Fiordland snapshots</strong> and pick one from before the problem. The menu lists at most the 20 newest snapshots, each with its date and what caused it.</li><li>The system starts from that snapshot. Changes you make now are kept in memory only and are lost at the next restart. Check that everything works.</li><li><p>To keep it, make it permanent:</p>
+<pre><code>sudo fiordland-rollback</code></pre>
+<p>It shows which snapshot it will use and asks to continue. Without a number it uses the snapshot the computer was started from.</p></li><li>Restart. Fiordland now starts from the restored system.</li><li><p>When everything works, free the space the old system uses:</p>
+<pre><code>sudo fiordland-rollback --clean</code></pre></li></ol>
+<p>Each snapshot includes its own kernel, so this also undoes a bad kernel update.</p>
+<h2 id="fiordland-rollback"><code>fiordland-rollback</code></h2>
+<pre><code>fiordland-rollback [-y] [SNAPSHOT]
+fiordland-rollback --list
+fiordland-rollback --clean</code></pre>
+<p><code>SNAPSHOT</code> is a number from <code>--list</code>. The command makes that snapshot the running system from the next boot. It keeps the current system as <code>@rollback-backup-&lt;date&gt;</code> and does not change <code>/home</code>. If the snapshot cannot be put in place, the current system is restored and nothing changes. <code>-y</code> skips the questions. <code>--clean</code> deletes the kept <code>@rollback-backup-*</code> systems.</p>
+<p>To restore a snapshot without booting it first, use its number:</p>
+<pre><code>sudo fiordland-rollback 42</code></pre>
+<p>The Kuaka update app has the same thing in its History tab: every snapshot taken before a change, with an Undo button.</p>
+<h2 id="installs-from-before-23-november-2026">Installs from before 23 November 2026</h2>
+<p>Older installs use <code>systemd-boot</code> and keep the kernel on the boot partition, so the snapshot menu is not there. Boot the Fiordland USB stick, open a terminal and:</p>
+<ol><li><p>Find the Btrfs partition, for example <code>/dev/nvme0n1p2</code>:</p>
+<pre><code>lsblk -f</code></pre></li></ol>
+<ol><li><p>Mount the top of the filesystem and pick a snapshot. <code>info.xml</code> in each snapshot folder has its date:</p>
+<pre><code>sudo mount -o subvolid=5 /dev/nvme0n1p2 /mnt
 sudo ls /mnt/@snapshots
-sudo mv /mnt/@ /mnt/@broken
+sudo cat /mnt/@snapshots/N/info.xml</code></pre></li></ol>
+<ol><li><p>Move the broken system aside and restore the snapshot:</p>
+<pre><code>sudo mv /mnt/@ /mnt/@broken
 sudo btrfs subvolume snapshot /mnt/@snapshots/N/snapshot /mnt/@
-sudo umount /mnt</pre>
-    <p>Use the <code>btrfs</code> partition from <code>lsblk -f</code>, and <code>info.xml</code> in each snapshot folder for its date. If a kernel update caused the problem, run <code>sudo pacman -S linux-cachyos linux</code> after restarting.</p>
-  </section>
-  <nav class="dpager" aria-label="Docs pages"><a class="dp" href="/docs/updates/"><span>Previous</span>Updates</a><a class="dp nx" href="/docs/help/"><span>Next</span>Getting help</a></nav>
+sudo umount /mnt</code></pre></li></ol>
+<ol><li><p>Reboot. If a kernel update caused the problem, reinstall the kernels:</p>
+<pre><code>sudo pacman -S linux-cachyos linux</code></pre></li></ol>
+<nav class="pager" aria-label="Previous and next page"><a class="pg prev" href="/docs/updates/"><span>Previous</span>Updates</a><a class="pg next" href="/docs/kernel/"><span>Next</span>The kernel</a></nav>
+</article>
+<aside class="dtoc" aria-label="On this page"><p>On this page</p><ul id="toc"></ul></aside>
 </main>
-
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
   </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
 Fiordland 1
 - Fiordland is out of beta. Installed systems move to Fiordland 1 with a normal update; nothing needs reinstalling.
-- New linux-fiord kernel, our fork of the CachyOS kernel with BORE, built for the x86-64 baseline so it also runs on older CPUs. Pick it in the installer or switch with sudo fiordland kernel fiord.
-- crest 1, a new Hyprland shell in the Material 3 Expressive style, with crest-greeter as its login screen.
+- New `linux-fiord` kernel, our fork of the CachyOS kernel with BORE, built for the x86-64 baseline so it also runs on older CPUs. Pick it in the installer or switch with `sudo fiordland kernel fiord`.
+- crest 1, a new Hyprland shell in the Material 3 Expressive style, with `crest-greeter` as its login screen.
 - tawaki 1.0, kuaka 1.0 and weka 1.1: one command for the Arch repos, Flathub and the AUR, a redesigned update manager with tray notices, and a redesigned desktop switcher.
 - The rawaru installer 2.0 is redesigned, checks your disk and settings before it starts, and has a Low-end PC switch.
 - Restarting and shutting down no longer hang. Services get 10 seconds to stop (your own apps 5), and if something still blocks, the system restarts anyway after 3 minutes instead of waiting forever.
 - Faster start: the boot no longer waits for the network, and the Btrfs snapshot watcher and mirror refresh run in the background.
-- New fiordland-tune picks lighter settings on its own on PCs with less than 4 GB of memory, two CPU threads or no graphics acceleration. Switch by hand with sudo fiordland-tune apply low-end, balanced or performance. Try the sched_ext schedulers with sudo fiordland-tune scx lavd (needs scx-scheds).
-- One front door: fiordland version, news, tune, report, channel, kernel and dns. fiordland report collects details for a bug report; nothing is uploaded.
+- New `fiordland-tune` picks lighter settings on its own on PCs with less than 4 GB of memory, two CPU threads or no graphics acceleration. Switch by hand with `sudo fiordland-tune apply low-end`, `balanced` or `performance`. Try the sched_ext schedulers with `sudo fiordland-tune scx lavd` (needs `scx-scheds`).
+- One front door: `fiordland version`, `news`, `tune`, `report`, `channel`, `kernel` and `dns`. `fiordland report` collects details for a bug report; nothing is uploaded.
 - Now included: firewall on by default, printing with network printer discovery, Bluetooth, firmware updates (fwupd), disk health tools, CJK and emoji fonts, audio and video codecs with hardware decoding, plocate, and monthly Btrfs scrubs. Snapshots from updates are trimmed to the newest 10.
-- Optional: encrypted DNS with sudo fiordland dns tls and a Btrfs swap file with sudo fiordland-tune swapfile 8.
+- Optional: encrypted DNS with `sudo fiordland dns tls` and a Btrfs swap file with `sudo fiordland-tune swapfile 8`.
 - Updated install image 2026.11.26-3: the installer asks you to join Wi-Fi before it starts, retries slow downloads, and the crest lock screen accepts your password every time.

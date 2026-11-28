@@ -1,238 +1,162 @@
-import sys, pathlib, html
+"""Generate the Fiordland website.
 
-WEB = pathlib.Path(sys.argv[1])
-V = sys.argv[2]
+    python3 ops/docs/build.py OUT_DIR
 
-NAV = [("/#features", "Features"), ("/compare/", "Compare"), ("/docs/", "Docs"), ("/wiki/", "Wiki"), ("https://github.com/Fiordland-Linux/fiordland", "GitHub"), ("https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00", "Donate"), ("https://discord.gg/gy4ANH2Q9V", "Discord")]
-
-def nav(cur):
-    out = []
-    for href, label in NAV:
-        a = ' aria-current="page"' if href == cur else ""
-        out.append(f'      <a href="{href}"{a}>{label}</a>')
-    return "\n".join(out)
-
-FOOT = """<footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-  </div>
-</footer>"""
-
-def head_extra(path):
-    if path is None:
-        return '<meta name="robots" content="noindex">'
-    return f'<link rel="canonical" href="https://fiordlandlinux.org{path}">\n<meta property="og:url" content="https://fiordlandlinux.org{path}">'
-
-def page(title, desc, cur, body, eyebrow, path="/docs/"):
-    return f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title} &middot; Fiordland Linux</title>
-<meta name="description" content="{html.escape(desc)}">
-<meta name="theme-color" content="#131313">
-{head_extra(path)}
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v={V}">
-</head>
-<body>
-<header class="nav">
-  <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-{nav(cur)}
-    </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
-  </div>
-</header>
-
-<main class="wrap main-pad">
-  <p class="eyebrow">{eyebrow}</p>
-{body}
-</main>
-
-{FOOT}
-<script src="/assets/js/site.js?v=4" defer></script>
-</body>
-</html>
+Every page is built from files in this repository: the guides in docs/, CONTRIBUTING.md and
+SECURITY.md (rendered from Markdown), the package build files, the release notes in web/news/
+and the page text in pages.py and content/. Nothing is read back from OUT_DIR except the ISO
+version that ops/site/release-iso writes into the home page, and the sitemap dates.
 """
+import datetime
+import html
+import json
+import re
+import sys
+from pathlib import Path
 
-DOCS = [
- ("install", "Install Fiordland", "Make a USB stick, boot it and run the installer."),
- ("first-steps", "First steps", "What to do after the first boot."),
- ("apps", "Installing apps", "Find, install, update and remove apps with tawaki."),
- ("updates", "Updates", "Keep the system current and what to do when an update goes wrong."),
- ("snapshots", "Snapshots and rollback", "Undo a bad update with Btrfs snapshots."),
- ("help", "Getting help", "Where to ask, and what to include so people can help."),
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import md
+import pages
+import shell
+from shell import BASE, DISCORD, GH
 
-def pager(slug):
-    i = [d[0] for d in DOCS].index(slug)
-    prev = DOCS[i - 1] if i > 0 else None
-    nxt = DOCS[i + 1] if i + 1 < len(DOCS) else None
-    a = f'<a class="dp" href="/docs/{prev[0]}/"><span>Previous</span>{prev[1]}</a>' if prev else "<span></span>"
-    b = f'<a class="dp nx" href="/docs/{nxt[0]}/"><span>Next</span>{nxt[1]}</a>' if nxt else "<span></span>"
-    return f'  <nav class="dpager" aria-label="Docs pages">{a}{b}</nav>'
+OUT = Path(sys.argv[1])
+REPO = pages.REPO
+TODAY = datetime.date.today().isoformat()
+DEFAULT_ISO_VERSION = "2026.11.26 build 3"
 
-def term(t):
-    return f'<pre class="term">{html.escape(t)}</pre>'
+OUT.mkdir(parents=True, exist_ok=True)
+NEWS = OUT / "news" if any((OUT / "news").glob("*.txt")) else REPO / "web" / "news"
 
-def sec(h, inner):
-    return f'  <section class="msec">\n    <h2 class="h3">{h}</h2>\n{inner}\n  </section>'
+sitemap = OUT / "sitemap.xml"
+previous = dict(re.findall(r"<loc>" + re.escape(BASE) + r"([^<]*)</loc><lastmod>([^<]*)</lastmod>", sitemap.read_text(encoding="utf-8"))) if sitemap.exists() else {}
+modified = {}
 
-def steps(items):
-    li = "\n".join(f"      <li><h3>{h}</h3>{b}</li>" for h, b in items)
-    return f'    <ol class="msteps">\n{li}\n    </ol>'
 
-def p(t):
-    return f"    <p>{t}</p>"
+def emit(url, text):
+    """Write a page, and remember when it last changed for the sitemap."""
+    f = OUT / ("index.html" if url == "/" else url.strip("/") + "/index.html")
+    f.parent.mkdir(parents=True, exist_ok=True)
+    unchanged = f.exists() and f.read_text(encoding="utf-8") == text
+    if not unchanged:
+        f.write_text(text, encoding="utf-8")
+    modified[url] = previous.get(url, TODAY) if unchanged else TODAY
 
-def ul(items):
-    return '    <ul class="dlist">' + "".join(f"<li>{x}</li>" for x in items) + "</ul>"
 
-C = {}
+def fragment(name):
+    """Page text kept as HTML in content/, with the markup of the old site tidied. Returns (lede, body)."""
+    text = (pages.CONTENT / f"{name}.html").read_text(encoding="utf-8")
+    text = re.sub(r'\s*<p class="eyebrow">.*?</p>', "", text)
+    for old, new in (('class="msec"', 'class="sec"'), ('<h2 class="h3">', "<h2>"), ('class="card plain"', 'class="plainbox"')):
+        text = text.replace(old, new)
+    lede = re.search(r'<p class="lede">(.*?)</p>', text, re.S)
+    text = re.sub(r'\s*<h1[^>]*>.*?</h1>|\s*<p class="lede">.*?</p>', "", text, count=2, flags=re.S)
+    return (lede.group(1) if lede else ""), text
 
-C["install"] = "\n".join([
- sec("What you need", ul([
-  "A 64-bit PC. UEFI is recommended; older BIOS machines work too.",
-  "4 GB of RAM at least, 8 GB or more is better.",
-  "30 GB of disk. Either a whole disk, which is erased, or room next to Windows on a UEFI computer. Back up anything you want to keep.",
-  "To keep Windows: turn off Fast Startup and BitLocker (Device encryption) in Windows first, then shut down fully.",
-  "A USB stick of 4 GB or more, and an internet connection during the install.",
- ])),
- sec("Install", steps([
-  ("Download the ISO", '<p>Get it from the <a href="/">home page</a>. The SHA-256 checksum is listed under the download button. On Linux, check it with:</p>' + term("sha256sum fiordland-*.iso")),
-  ("Write it to a USB stick", '<p>On Windows use <a href="https://rufus.ie">Rufus</a> and pick <em>DD image mode</em> when it asks. On macOS or Windows, <a href="https://etcher.balena.io">balenaEtcher</a> also works. On Linux:</p>' + term("sudo dd if=fiordland-*.iso of=/dev/sdX bs=4M status=progress oflag=sync") + "<p>Replace <code>sdX</code> with the USB stick. <code>lsblk</code> lists your drives. Picking the wrong one erases it.</p>"),
-  ("Boot from the stick", "<p>Restart and press the boot menu key while the logo shows. It is usually F12, F11, F8, Esc or F2. Turn off <strong>Secure Boot</strong> in the firmware settings first; Fiordland's boot files are not signed yet.</p>"),
-  ("Run the installer", "<p>The live desktop opens the installer by itself. Pick your language, keyboard, timezone, the disk (the whole disk, alongside Windows with a slider for the size, or partitions you choose, with a partition editor one click away), your account and a desktop. KDE Plasma is the default and the easiest switch from Windows. The review page lets you change the graphics driver and kernel before anything is written.</p>"),
-  ("Restart", "<p>Packages download fresh, so the install takes 5 to 20 minutes. Remove the USB stick when the computer restarts.</p>"),
- ])),
- sec("If something goes wrong", ul([
-  "The disk does not show up: in the firmware settings, change SATA mode from RAID or Intel RST to AHCI.",
-  "Black screen after the boot menu: pick <strong>Fiordland Linux (safe graphics)</strong>.",
-  'Anything else: see the <a href="/wiki/Troubleshooting">Troubleshooting</a> page on the wiki.',
- ])),
-])
 
-C["first-steps"] = "\n".join([
- sec("Connect to the internet", p("Click the network icon in the panel and pick your Wi-Fi. A cable works without any setup.")),
- sec("Pair Bluetooth devices", p("On the crest desktop, open quick settings and click the arrow on the Bluetooth tile. Put the device in pairing mode and click it under <strong>available</strong>. If it shows a code or needs a PIN, crest asks for it. Other desktops have their own Bluetooth settings.")),
- sec("Update once", p("The ISO may be a few days old. Open a terminal and run:") + "\n    " + term("tawaki update") + "\n" + p("It asks for your password, then updates the system, Flatpaks and AUR packages together.")),
- sec("Install your apps", p("Use the package manager from the terminal:") + "\n    " + term("tawaki install firefox steam discord") + "\n" + p('<code>i</code> is a shortcut for <code>tawaki install</code>. More in <a href="/docs/apps/">Installing apps</a>.')),
- sec("Already set up for you", ul([
-  "Graphics drivers for your GPU, Vulkan and 32-bit libraries for Steam and Wine.",
-  "Steam, proton-cachyos, wine-cachyos, umu-launcher, gamemode, MangoHud and gamescope.",
-  "Flathub, so Flatpak apps work straight away.",
-  "Printing, with network printers found automatically.",
-  "A firewall (ufw) that blocks incoming connections.",
-  "Bluetooth, power profiles, firmware updates and zram swap.",
-  "Snapshots before every update, so a bad update can be undone.",
- ])),
- sec("Terminal basics", ul([
-  "<code>sudo</code> runs a command as administrator. It asks for your own password.",
-  "Typing a command you do not have tells you which package provides it.",
-  "<code>Ctrl+C</code> stops a running command. <code>Ctrl+Shift+V</code> pastes in most terminals.",
- ])),
-])
+def release_notes():
+    """Newest first: (version, title, date, lines). Notes are web/news/VERSION.txt, dates come from dates.json."""
+    dates_file = NEWS / "dates.json"
+    dates = json.loads(dates_file.read_text(encoding="utf-8")) if dates_file.exists() else {}
+    notes = sorted((p for p in NEWS.glob("*.txt") if re.fullmatch(r"\d+(\.\d+){1,3}", p.stem)), key=lambda p: tuple(map(int, p.stem.split("."))), reverse=True)
+    out = []
+    for p in notes:
+        lines = [l.rstrip() for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+        posted = dates.get(p.stem) or datetime.datetime.fromtimestamp(p.stat().st_mtime, datetime.timezone.utc).strftime("%Y-%m-%d")
+        out.append((p.stem, lines[0], posted, lines[1:]))
+    return out
 
-C["apps"] = "\n".join([
- sec("How it works", p("tawaki searches three places at once: the Arch repositories, Flathub and the AUR. It installs from the repos when it can, then Flathub, then the AUR. If a Flatpak would pull in a large runtime you do not have yet, it picks a prebuilt package instead.")),
- sec("Commands", '    <div class="card plain"><table class="cmp dcmd"><tbody>' + "".join(
-   f"<tr><th scope=\"row\"><code>{c}</code></th><td>{d}</td></tr>" for c, d in [
-    ("tawaki install NAME", "Install an app. Short: <code>i NAME</code>"),
-    ("tawaki remove NAME", "Remove it, wherever it came from"),
-    ("tawaki update", "Update everything. Short: <code>up</code>"),
-    ("tawaki search WORDS", "Search all three sources"),
-    ("tawaki list", "List apps installed with tawaki"),
-    ("tawaki install NAME --from flatpak", "Force a source: <code>pacman</code>, <code>flatpak</code> or <code>aur</code>"),
-   ]) + "</tbody></table></div>"),
- sec("Settings", p("Edit <code>~/.config/tawaki/config.toml</code> to change the order or turn off the light-package check:") + "\n    " + term('priority = ["pacman", "flatpak", "aur"]\nprefer_light = true')),
- sec("About the AUR", p("AUR packages are build scripts uploaded by users. Nobody at Arch or Fiordland reviews them. Prefer repo and Flathub packages, and only install from the AUR when you trust the package.")),
- sec("Other tools still work", p("<code>pacman</code> and <code>flatpak</code> work as usual. tawaki is a front end, not a replacement. No AUR helper is installed: tawaki builds AUR packages with <code>makepkg</code> and shows you the build script first. If you install <code>paru</code> or <code>yay</code> yourself, tawaki uses it.")),
-])
 
-C["updates"] = "\n".join([
- sec("Update", term("tawaki update") + "\n" + p("Run it every week or two. Fiordland is a rolling release: packages update in small steps, and new releases arrive the same way.")),
- sec("New releases", p("A new ISO is only for new installs. An installed system gets the same changes through <code>tawaki update</code>: new default packages, settings and fixes are applied once, inside the update, after the pre-update snapshot. When the release number changes, the update prints it with a short list of what's new, for example <code>Fiordland 0.9.0 -&gt; 1.0.0</code>.") + "\n    " + term("cat /etc/os-release") + "\n" + p("shows the current release. <code>fiordland-migrate --list</code> shows which release changes are applied. A change that fails is reported, logged in <code>/var/log/fiordland-migrate.log</code> and tried again on the next update.")),
- sec("Before updating", ul([
-  "Close games and apps that are running.",
-  "Keep the laptop plugged in.",
-  "Read what the update prints. Messages that start with <code>==&gt;</code> or <code>warning:</code> sometimes ask you to do something.",
- ])),
- sec("After a kernel update", p("Restart when it finishes. Until then, new USB devices and some drivers may not load.")),
- sec("When an update goes wrong", p('A snapshot is taken before every update. See <a href="/docs/snapshots/">Snapshots and rollback</a>. If the desktop does not start, pick <strong>Arch kernel</strong> or <strong>safe graphics</strong> in the boot menu first.')),
- sec("Clean up", p("Old package downloads are cleared every week automatically, keeping the last three versions. To remove packages nothing uses any more:") + "\n    " + term("sudo pacman -Rns $(pacman -Qdtq)")),
-])
+def news_page(notes):
+    sections = []
+    for version, title, posted, lines in notes:
+        body, bullets = [], []
+        for line in lines + [""]:
+            if line.startswith("- "):
+                bullets.append(line[2:].strip())
+                continue
+            if bullets:
+                body.append("<ul>" + "".join(f"<li>{md.inline(b, str)}</li>" for b in bullets) + "</ul>")
+                bullets = []
+            if line:
+                body.append(f"<p>{md.inline(line.strip(), str)}</p>")
+        sections.append(f'<section class="release" id="v{version}"><h2>{html.escape(title)}</h2>'
+                        f'<p class="date"><time datetime="{posted}">{posted}</time> &middot; <a href="/news/{version}.txt">plain text</a></p>{"".join(body)}</section>')
+    return shell.plain_page("News", "Release notes for every Fiordland Linux version, from the 0.9.0 public beta to Fiordland 1, with what changed and how to update.", "/news/",
+                            "What changed in each Fiordland release. Installed systems get these with <code>tawaki update</code>.", "\n".join(sections))
 
-C["snapshots"] = "\n".join([
- sec("What is saved", p("Fiordland uses Btrfs and <a href=\"https://wiki.archlinux.org/title/Snapper\">snapper</a>. A snapshot is a frozen copy of the system, not your home folder. Snapshots are taken before and after every package change, and every hour (5 hourly, 7 daily, 2 weekly and 1 monthly are kept).") + "\n    " + term("snapper -c root list")),
- sec("Undo an update while the system works", p("Find the snapshot pair for the bad update in the list (the <em>pre</em> and <em>post</em> numbers), then:") + "\n    " + term("sudo snapper -c root undochange PRE..POST") + "\n" + p("Restart afterwards.")),
- sec("Roll back when the system does not boot", steps([
-  ("Pick a snapshot", "<p>Restart, open <strong>Fiordland snapshots</strong> in the boot menu and pick one from before the problem. Each entry shows its date and what caused it.</p>"),
-  ("Check it works", "<p>The system starts from the snapshot. Changes made now are kept in memory and lost at the next restart.</p>"),
-  ("Make it permanent", term("sudo fiordland-rollback") + "<p>Restart, and Fiordland starts from the restored system. Your home folder is not touched.</p>"),
-  ("Free the space", term("sudo fiordland-rollback --clean") + "<p>Deletes the old system once everything works.</p>"),
- ]) + "\n" + p("Each snapshot carries its own kernel, so this also undoes a bad kernel update. To restore by number without booting it first, use <code>fiordland-rollback --list</code> and then <code>sudo fiordland-rollback N</code>.")),
- sec("Installs from before 23 November 2026", p("Older installs use systemd-boot, so the snapshot menu is not there. Boot the USB stick, open a terminal, and:") + "\n    " + term("lsblk -f\nsudo mount -o subvolid=5 /dev/nvme0n1p2 /mnt\nsudo ls /mnt/@snapshots\nsudo mv /mnt/@ /mnt/@broken\nsudo btrfs subvolume snapshot /mnt/@snapshots/N/snapshot /mnt/@\nsudo umount /mnt") + "\n" + p("Use the <code>btrfs</code> partition from <code>lsblk -f</code>, and <code>info.xml</code> in each snapshot folder for its date. If a kernel update caused the problem, run <code>sudo pacman -S linux-cachyos linux</code> after restarting.")),
-])
 
-C["help"] = "\n".join([
- sec("Where to ask", ul([
-  '<a href="/wiki/">Wiki</a>: guides and fixes written by users. Search it first.',
-  '<a href="/wiki/Help_desk">Help desk</a>: ask a question on the wiki. Every wiki page also has a Discussion tab.',
-  '<a href="https://github.com/Fiordland-Linux/fiordland/issues">GitHub issues</a>: bugs in Fiordland, tawaki or the installer.',
-  '<a href="https://wiki.archlinux.org">Arch Wiki</a>: Fiordland uses the Arch repos, so most of it applies.',
- ])),
- sec("What to include", ul([
-  "What you did, what you expected, and what happened instead.",
-  "The exact error text. Copy it, do not retype it.",
-  "Your hardware, especially the GPU.",
- ]) + "\n" + p("This prints a hardware summary you can paste:") + "\n    " + term("inxi -Fxz") + "\n" + p("For errors from the current boot:") + "\n    " + term("journalctl -b -p err --no-pager | tail -50")),
- sec("Do not paste", p("Passwords, Wi-Fi keys or anything from <code>/etc/shadow</code>. <code>inxi -z</code> already hides serial numbers and IP addresses.")),
-])
+def iso_version():
+    """release-iso writes the ISO version into the home page, so keep whatever is there."""
+    home = OUT / "index.html"
+    found = re.search(r'<span id="dl-ver">([^<]*)</span>', home.read_text(encoding="utf-8")) if home.exists() else None
+    return re.sub(r"-(\d+)$", r" build \1", found.group(1) if found else DEFAULT_ISO_VERSION)
 
-def doc(slug, title, desc):
-    body = f'  <h1 class="page">{title}</h1>\n  <p class="lede">{desc}</p>\n{C[slug]}\n{pager(slug)}'
-    return page(title, desc, "/docs/", body, '<a href="/docs/">Docs</a>', f"/docs/{slug}/")
 
-cards = "\n".join(f'    <a class="card dcard" href="/docs/{s}/"><div class="card-in"><h3>{t}</h3><p>{d}</p></div></a>' for s, t, d in DOCS)
-idx = f"""  <h1 class="page">Documentation</h1>
-  <p class="lede">Official guides for installing and using Fiordland. Community guides and fixes are on the <a href="/wiki/">wiki</a>.</p>
-  <div class="dgrid">
-{cards}
-  </div>
-  <p class="note">Found a mistake? These pages live in <a href="https://github.com/Fiordland-Linux/fiordland/tree/main/web/docs">the repo</a>.</p>"""
+def docs_index():
+    blurbs = {"first-steps": "What to do after the first boot, and what Fiordland has already set up for you.",
+              "updates": "Update with tawaki, choose a channel, and understand release migrations."}
+    sections = []
+    for group, links in shell.DOCS_GROUPS[:2]:
+        cards = "".join(pages.card(title, pages.DOC_META[slug][1] if slug in pages.DOC_META else blurbs[slug], href, "Read")
+                        for href, title in links for slug in [href.split("/")[2]])
+        sections.append(f"<h2>{group}</h2><div class=\"cards\">{cards}</div>")
+    sections.append('<h2>Help</h2><div class="cards">'
+                    + pages.card("Getting help", "Where to ask, what to include and how to collect it.", "/docs/help/", "Read")
+                    + pages.card("Community wiki", "Guides and fixes written by users, and a help desk.", "/wiki/", "Open the wiki") + "</div>")
+    return "\n".join(sections)
 
-(WEB / "docs").mkdir(exist_ok=True)
-(WEB / "docs/index.html").write_text(page("Documentation", "Official guides for installing and using Fiordland Linux.", "/docs/", idx, "Docs"))
-for s, t, d in DOCS:
-    (WEB / "docs" / s).mkdir(exist_ok=True)
-    (WEB / "docs" / s / "index.html").write_text(doc(s, t, d))
 
-nf = """  <h1 class="page">Page not found</h1>
-  <p class="lede">That page does not exist. It may have moved.</p>
-  <p><a href="/">Home</a> &middot; <a href="/docs/">Docs</a> &middot; <a href="/wiki/">Wiki</a></p>"""
-(WEB / "404.html").write_text(page("Page not found", "That page does not exist.", "", nf, "Fiordland", None))
+notes = release_notes()
+version = notes[0][0]
+ctx = {"latest": (notes[0][1], notes[0][2], notes[0][3]), "ver": version, "shown": re.sub(r"(\.0)+$", "", version), "dlver": iso_version(),
+       "history": [(v, title, posted, pages.RELEASE_BLURBS.get(v, "")) for v, title, posted, _ in reversed(notes)]}
+
+main, ld = pages.home(ctx)
+emit("/", shell.document("Fiordland Linux", "A Linux distribution based on Arch, with its own installer, package manager and desktop shell. Btrfs snapshots, a tested stable channel and gaming ready.",
+                         "/", main, full_title=True, ld=ld))
+for url, build in (("/about/", pages.about), ("/software/", pages.software), ("/download/", pages.download), ("/donate/", pages.donate)):
+    title, desc, lede, inner = build(ctx)
+    emit(url, shell.plain_page(title, desc, url, lede, inner))
+emit("/news/", news_page(notes))
+
+lede, body = pages.read_md("docs/why-fiordland.md")
+compare_lede, compare = fragment("compare")
+compare = re.sub(r'More detail: <a href="/why/">[^<]*</a>\.\s*', "", compare)
+body += f'\n<section class="sec" id="compare"><h2>Compared with CachyOS and Arch</h2><p>{compare_lede}</p>{compare}</section>'
+faq = json.loads((pages.CONTENT / "why-faq.json").read_text(encoding="utf-8"))
+emit("/why/", shell.plain_page("Why Fiordland", "What Fiordland Linux does differently from CachyOS and Arch, what they all do, what CachyOS does better, and a side by side table.", "/why/",
+                               lede, body, ld=[faq, shell.crumbs("/why/", "Why Fiordland")]))
+for url, title, desc, name in (("/low-end/", "Fiordland on older PCs", "How Fiordland Linux runs on old and low end PCs: the installer switch, automatic tuning, a kernel for any 64 bit CPU and light desktops.", "low-end"),
+                               ("/mirrors/", "Mirrors", "Mirrors that carry the Fiordland Linux package repo and ISOs, how to pick one, and how to host a mirror of your own.", "mirrors")):
+    lede, body = fragment(name)
+    emit(url, shell.plain_page(title, desc, url, lede, body))
+
+lede, body = pages.read_md("CONTRIBUTING.md")
+intro = ("<p>You do not need to write code to help. Testing and clear bug reports are some of the most useful things you can do. "
+         f'Run Fiordland on a real machine and fill in the <a href="{GH}/issues/new?template=hardware.yml">hardware report</a>, open a <a href="{GH}/issues/new/choose">bug report or feature request</a>, '
+         f'or ask in the <a href="{DISCORD}">Discord</a> before you start on something bigger.</p>')
+emit("/contribute/", shell.plain_page("Contribute", "How to contribute to Fiordland Linux: the repository layout, how to build and test, packaging rules, conventions and the pull request process.",
+                                      "/contribute/", lede, intro + "\n" + body))
+lede, body = pages.read_md("SECURITY.md")
+emit("/security/", shell.plain_page("Security", "The Fiordland Linux security policy: how to report a vulnerability privately, what to expect, what is in scope and how packages are signed.",
+                                    "/security/", lede, body))
+
+for slug, source in pages.DOC_SRC.items():
+    title, desc = pages.DOC_META[slug]
+    lede, body = pages.read_md(source)
+    emit(f"/docs/{slug}/", shell.docs_page(title, desc, f"/docs/{slug}/", lede, body))
+for slug, build in (("first-steps", pages.first_steps), ("updates", pages.updates), ("help", pages.helping)):
+    title, desc, lede, inner = build()
+    emit(f"/docs/{slug}/", shell.docs_page(title, desc, f"/docs/{slug}/", lede, inner))
+emit("/docs/", shell.docs_page("Documentation", "Official guides for installing and using Fiordland Linux: install, first steps, apps with tawaki, updates, snapshots, the kernel and the crest shell.",
+                               "/docs/", "Guides for installing and using Fiordland Linux. Everything here is also in the repository as plain Markdown.", docs_index()))
+
+(OUT / "404.html").write_text(shell.plain_page("Page not found", "That page does not exist on fiordlandlinux.org.", "/404", "Nothing lives at that address.",
+                                               '<ul><li><a href="/">Go to the home page</a></li><li><a href="/docs/">Read the documentation</a></li><li><a href="/download/">Download Fiordland</a></li></ul>',
+                                               noindex=True, cur=""), encoding="utf-8")
+
+order = (["/", "/download/", "/donate/", "/about/", "/software/", "/why/", "/low-end/", "/news/", "/mirrors/", "/docs/"]
+         + [f"/docs/{href.split('/')[2]}/" for href in shell.DOCS_ORDER] + ["/contribute/", "/security/"])
+sitemap.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                   + "".join(f"  <url><loc>{BASE}{url}</loc><lastmod>{modified[url]}</lastmod></url>\n" for url in order) + "</urlset>\n", encoding="utf-8")

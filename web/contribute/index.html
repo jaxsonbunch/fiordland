@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contribute | Fiordland Linux</title>
+<meta name="description" content="How to contribute to Fiordland Linux: the repository layout, how to build and test, packaging rules, conventions and the pull request process.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://fiordlandlinux.org/contribute/">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fiordlandlinux.org/contribute/">
+<meta property="og:title" content="Contribute | Fiordland Linux">
+<meta property="og:description" content="How to contribute to Fiordland Linux: the repository layout, how to build and test, packaging rules, conventions and the pull request process.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contribute | Fiordland Linux">
+<meta name="twitter:description" content="How to contribute to Fiordland Linux: the repository layout, how to build and test, packaging rules, conventions and the pull request process.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Contribute","item":"https://fiordlandlinux.org/contribute/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
+    </nav>
+    <a class="btn sm" href="/download/">Download</a>
+  </div>
+</header>
+<section class="page-head"><div class="wrap"><h1>Contribute</h1><p class="lede">Thanks for helping. This page covers the repo layout, how to build and test, and the conventions the project follows. For a security problem, do not open an issue: see <a href="/security/">security policy</a>.</p></div><svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg></section>
+<main id="main" class="wrap page">
+<p>You do not need to write code to help. Testing and clear bug reports are some of the most useful things you can do. Run Fiordland on a real machine and fill in the <a href="https://github.com/Fiordland-Linux/fiordland/issues/new?template=hardware.yml">hardware report</a>, open a <a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">bug report or feature request</a>, or ask in the <a href="https://discord.gg/gy4ANH2Q9V">Discord</a> before you start on something bigger.</p>
+<h2 id="where-things-live">Where things live</h2>
+<div class="tbl"><table><thead><tr><th scope="col">Path</th><th scope="col">What it is</th></tr></thead><tbody><tr><td><code>crest/</code></td><td>The Hyprland shell, plain QML on Quickshell.</td></tr><tr><td><code>crest-greeter/</code></td><td>The greetd login screen, which reuses crest's theme and components.</td></tr><tr><td><code>packages/</code></td><td>PKGBUILDs for everything Fiordland ships. <code>packages/aur/</code> holds bundled AUR packages that the old Caelestia based crest needed.</td></tr><tr><td><code>iso/</code></td><td>The archiso profile for the live ISO.</td></tr><tr><td><code>flavors/</code></td><td>Overlays on the ISO profile, selected with <code>FLAVOR=</code> (currently <code>xfce</code>).</td></tr><tr><td><code>container/</code></td><td>The Fiordland XFCE container image.</td></tr><tr><td><code>web/</code></td><td>The website. Its pages are generated by <code>ops/docs/build.py</code>, see below.</td></tr><tr><td><code>ops/</code></td><td>Server side scripts: docs generator, mirrors, stable channel, wiki seed pages, bot setup, and <code>ops/site/</code> for publishing ISOs (<code>release-iso</code>) and news (<code>post-news</code>).</td></tr><tr><td><code>bot/</code></td><td>The Discord bot and its tests.</td></tr><tr><td><code>tools/</code></td><td>Build helpers, the lint and release checks, and VM control.</td></tr><tr><td><code>docs/</code></td><td>Guides for users and maintainers.</td></tr></tbody></table></div>
+<p><a href="https://github.com/Fiordland-Linux/tawaki">tawaki</a> (the package manager), <a href="https://github.com/Fiordland-Linux/rawaru">rawaru</a> (the installer) and <a href="https://github.com/Fiordland-Linux/kuaka">kuaka</a> (the update app) and <a href="https://github.com/Fiordland-Linux/weka">weka</a> (the Desktops app) live in their own repos. Changes to them go there; this repo only packages their tagged releases.</p>
+<h2 id="setup">Setup</h2>
+<p>You can lint and run the tests on any Linux with <code>git</code>, <code>curl</code>, <code>python3</code>, <code>shellcheck</code>, <code>yamllint</code> and <code>pytest</code>, plus <code>check-jsonschema</code> from PyPI:</p>
+<pre><code>pipx install check-jsonschema</code></pre>
+<p>Building packages and the ISO needs an Arch based host with <code>archiso</code>, <code>devtools</code> and <code>base-devel</code>.</p>
+<h2 id="check-your-change">Check your change</h2>
+<pre><code>tools/lint.sh
+bash ops/mirrors/test_sync.sh
+bash tools/test_release_check.sh
+python3 -m pytest bot</code></pre>
+<p><code>tools/lint.sh</code> runs shellcheck on every shell script (except <code>iso/profiledef.sh</code>, which archiso sources) and every PKGBUILD, yamllint, the GitHub schemas for workflows and issue forms, and a JSON syntax check. CI runs the same commands, so a green run locally is a green run there.</p>
+<p><code>tools/release-check.sh</code> compares the versions in <code>packages/tawaki</code>, <code>packages/rawaru</code>, <code>packages/kuaka</code> and <code>packages/weka</code> with the newest tag of each repo and checks that the pinned <code>sha256sums</code> match the tagged archive. It needs network access and fails when a PKGBUILD is behind a new tag. <code>tools/namcap.sh</code> runs <code>namcap</code> on PKGBUILDs or built packages and prints what it finds. It needs an Arch host. CI runs it for information; its findings do not fail the build.</p>
+<h2 id="build">Build</h2>
+<pre><code>./build.sh              build all packages and the ISO into out/
+SKIP_AUR=1 ./build.sh   skip the chroot builds of crest and crest-greeter
+REBUILD=1 ./build.sh    rebuild packages even when the published ones match
+FLAVOR=xfce ./build.sh  build a flavor from flavors/</code></pre>
+<p><code>build.sh</code> reuses a package from <code>https://fiordlandlinux.org/repo/x86_64</code> when the file for the PKGBUILD's current version is already published. Bump <code>pkgrel</code> (or <code>pkgver</code>) when you change what a package installs, or your change will not reach the ISO. Without the signing key it builds an unsigned repo and says so. Release signing happens on the build machine only; see <a href="https://github.com/Fiordland-Linux/fiordland/blob/main/docs/signing-key.md">docs/<code>signing-key</code>.md</a>.</p>
+<p>Without <code>SKIP_AUR=1</code>, <code>tools/aurbuild.sh</code> builds crest and <code>crest-greeter</code> in a clean chroot (pass package names to build others, such as those in <code>packages/aur/</code>) with <code>makechrootpkg</code>. Create the chroot once with <code>mkarchroot chroot/root base-devel</code>.</p>
+<h2 id="test-in-a-vm">Test in a VM</h2>
+<pre><code>./vm.sh --share         boot the newest ISO in out/ with the repo shared into the guest
+./vm.sh --headless      no window or audio
+./vm.sh --fresh         start from an empty disk and fresh UEFI variables
+./vm.sh --bios          boot with legacy BIOS instead of UEFI
+./vm.sh --disk          boot the installed disk, not the ISO</code></pre>
+<p><code>tools/vmctl.py</code> drives a running VM through its QMP and guest agent sockets in <code>vm/</code>. <code>exec</code> runs a command in the guest through the guest agent. The other operations can be chained: <code>shot FILE</code>, <code>click X Y</code>, <code>move X Y</code>, <code>key COMBO</code>, <code>type TEXT</code>, <code>sleep SECONDS</code>, <code>size</code> and <code>quit</code>. <code>shot</code> needs ImageMagick (<code>magick</code>) on the host.</p>
+<pre><code>python3 tools/vmctl.py exec &#x27;uname -r&#x27;
+python3 tools/vmctl.py click 800 450 type hello key ret shot screen.png</code></pre>
+<p><code>ops/stable/test.sh YYYY/MM/DD</code> installs into a headless VM from an Arch archive snapshot, updates, and checks that the system boots.</p>
+<h2 id="packages">Packages</h2>
+<ul><li><code>tawaki</code>, <code>rawaru</code>, <code>kuaka</code> and <code>weka</code> build from tagged GitHub releases. After a new tag: set <code>pkgver</code>, set <code>pkgrel=1</code>, run <code>updpkgsums</code>, then <code>tools/release-check.sh</code>.</li><li>Changes to the base system go in <code>fiordland-base</code> as a migration: a script in <code>packages/fiordland-base/files/migrations/</code> named <code>NNNN-name.sh</code>. <code>fiordland-migrate</code> runs it once, as root, after the pacman transaction, and tries again on the next update if it fails. Write migrations so running them twice is harmless.</li><li>A new release number is a new <code>pkgver</code> for <code>fiordland-base</code>, with release notes in <code>files/news/&lt;version&gt;.txt</code>. <code>tawaki update</code> prints them.</li><li>The website is generated. After changing <code>ops/docs/</code>, a guide in <code>docs/</code>, <code>CONTRIBUTING.md</code>, <code>SECURITY.md</code>, a package build file or the release notes in <code>web/news/</code>, run <code>python3 ops/docs/build.py web</code> and commit the result. CI builds the site into an empty directory to check that the generator still runs.</li></ul>
+<h2 id="conventions">Conventions</h2>
+<ul><li>Shell scripts start with <code>#!/usr/bin/env bash</code> and <code>set -euo pipefail</code>, quote their variables, and pass <code>shellcheck</code> with no warnings. Shellcheck options live in <code>.shellcheckrc</code>.</li><li>No comments in code. Names and structure carry the meaning, and the commit message carries the reason.</li><li>Keep functions small and do not leave dead code behind.</li><li>Commit messages are short, lowercase and plain. Start with the area when it helps: <code>site:</code>, <code>container:</code>, <code>ci:</code>, <code>xfce:</code>. Look at <code>git log</code> and match it.</li><li>One logical change per pull request. If you fix something unrelated while you are there, say so in the description.</li><li>Every command in the docs must exist in the code. When behaviour changes, change the docs in the same pull request.</li></ul>
+<h2 id="pull-requests">Pull requests</h2>
+<ol><li>Fork the repo and branch from <code>main</code>.</li><li>Run the checks above and say in the description what you ran and what you could not test.</li><li>Fill in the pull request template. Link the issue it closes.</li></ol>
+<p>Bug reports, feature requests and real hardware reports each have an issue form. Questions go on the wiki <a href="https://fiordlandlinux.org/wiki/Help_desk">Help desk</a>.</p>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
+</footer>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
+</body>
+</html>

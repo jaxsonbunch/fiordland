@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security | Fiordland Linux</title>
+<meta name="description" content="The Fiordland Linux security policy: how to report a vulnerability privately, what to expect, what is in scope and how packages are signed.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://fiordlandlinux.org/security/">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fiordlandlinux.org/security/">
+<meta property="og:title" content="Security | Fiordland Linux">
+<meta property="og:description" content="The Fiordland Linux security policy: how to report a vulnerability privately, what to expect, what is in scope and how packages are signed.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security | Fiordland Linux">
+<meta name="twitter:description" content="The Fiordland Linux security policy: how to report a vulnerability privately, what to expect, what is in scope and how packages are signed.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
+<link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Security","item":"https://fiordlandlinux.org/security/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
+    </nav>
+    <a class="btn sm" href="/download/">Download</a>
+  </div>
+</header>
+<section class="page-head"><div class="wrap"><h1>Security</h1><p class="lede">Report security problems privately through GitHub: <strong>Security → Report a vulnerability</strong> on the affected repository (<a href="https://github.com/Fiordland-Linux/fiordland/security/advisories/new">fiordland</a>, <a href="https://github.com/Fiordland-Linux/tawaki/security/advisories/new">tawaki</a>, <a href="https://github.com/Fiordland-Linux/rawaru/security/advisories/new">rawaru</a>).</p></div><svg class="edge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 52C180 92 360 94 560 62C760 30 940 8 1140 30C1260 43 1360 60 1440 52V90H0Z"/></svg></section>
+<main id="main" class="wrap page">
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p>Do not open a public issue, wiki page or talk page for a vulnerability. If GitHub is not an option, email fiordlandlinux@gmail.com or message <code>u5sk</code> on Discord and ask for a private channel; do not send details in the first message.</p>
+<p>A useful report includes:</p>
+<ul><li>what is affected (package, version, ISO date, URL)</li><li>steps to reproduce, or a proof of concept</li><li>what an attacker gains</li><li>any suggested fix</li></ul>
+<h2 id="what-to-expect">What to expect</h2>
+<ul><li>Acknowledgement within 7 days.</li><li>An assessment and a planned fix date within 14 days.</li><li>Fixes ship as package updates in the <code>[fiordland]</code> repo; ISO level issues also get a rebuilt ISO.</li><li>Reporters are credited in the advisory unless they ask not to be.</li></ul>
+<p>Please allow 90 days, or until a fix is released, before public disclosure.</p>
+<h2 id="scope">Scope</h2>
+<p>In scope:</p>
+<ul><li><code>rawaru</code> (installer), <code>tawaki</code> (package and app manager), <code>crest</code> (desktop shell)</li><li><code>fiordland-desktop</code>, <code>fiordland-keyring</code> and the other packages in this repository</li><li>The live ISO and the defaults it installs (services, firewall, sudo, polkit, sysctl)</li><li>Package signing, the repository database and the mirror sync script</li><li><code>fiordlandlinux.org</code>: the site, docs, wiki, <code>/repo</code> and <code>/iso</code></li></ul>
+<p>Out of scope:</p>
+<ul><li>Bugs in upstream Arch Linux or CachyOS packages; report those upstream</li><li>Social engineering, physical attacks, or attacks that need root on the victim's machine already</li><li>Volumetric denial of service, spam, and automated scanning that degrades the service</li><li>Missing headers or best practice notes with no demonstrated impact</li></ul>
+<h2 id="testing-rules">Testing rules</h2>
+<ul><li>Test against your own install or VM. Do not touch other users' machines or accounts.</li><li>On the website and wiki: no denial of service, no mass account creation, no data destruction, and stop and report as soon as you reach data that is not yours.</li><li>Do not publish working exploits for unfixed issues.</li></ul>
+<p>Good faith research that follows these rules will not be pursued legally.</p>
+<h2 id="supported-versions">Supported versions</h2>
+<p>Fiordland is rolling. Only the current packages in <code>[fiordland]</code> and the latest ISO at <a href="https://fiordlandlinux.org/iso/">fiordlandlinux.org/iso</a> are supported.</p>
+<h2 id="package-signing">Package signing</h2>
+<p>Packages and the repository database are signed with:</p>
+<pre><code>Fiordland Build Key &lt;build@fiordlandlinux.org&gt;
+11DC 7CDC CFD3 CB71 196E  BEF1 FD69 DE77 164F 4200</code></pre>
+<p>The key is shipped in <code>fiordland-keyring</code>. A package or database signed by any other key should be treated as compromised and reported.</p>
+</main>
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
+  </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
+</footer>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
+</body>
+</html>

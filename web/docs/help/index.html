@@ -3,82 +3,96 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Getting help &middot; Fiordland Linux</title>
-<meta name="description" content="Where to ask, and what to include so people can help.">
-<meta name="theme-color" content="#131313">
+<title>Getting help | Fiordland Linux</title>
+<meta name="description" content="Where to ask for help with Fiordland Linux, what to include in a question, the fiordland report command and what not to paste.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://fiordlandlinux.org/docs/help/">
-<meta property="og:url" content="https://fiordlandlinux.org/docs/help/">
-<meta property="og:title" content="Getting help">
-<meta property="og:description" content="Where to ask, and what to include so people can help.">
-<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
-<meta property="og:site_name" content="Fiordland Linux">
+<meta name="theme-color" content="#1c1c1c">
+<meta name="author" content="Apollo (3cfl)">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/brand/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon.ico?v=2" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=6">
+<meta property="og:url" content="https://fiordlandlinux.org/docs/help/">
+<meta property="og:title" content="Getting help | Fiordland Linux">
+<meta property="og:description" content="Where to ask for help with Fiordland Linux, what to include in a question, the fiordland report command and what not to paste.">
+<meta property="og:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fiordland Linux logo and tagline">
+<meta property="og:site_name" content="Fiordland Linux">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Getting help | Fiordland Linux">
+<meta name="twitter:description" content="Where to ask for help with Fiordland Linux, what to include in a question, the fiordland report command and what not to paste.">
+<meta name="twitter:image" content="https://fiordlandlinux.org/assets/og.png?v=7">
+<meta name="twitter:image:alt" content="Fiordland Linux logo and tagline">
 <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:,">
-<link rel="stylesheet" href="/assets/site.css?v=20">
+<link rel="stylesheet" href="/assets/site.css?v=38">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fiordlandlinux.org/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://fiordlandlinux.org/docs/"},{"@type":"ListItem","position":3,"name":"Getting help","item":"https://fiordlandlinux.org/docs/help/"}]}]}</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="nav-in">
-    <a class="mark" href="/"><img src="/assets/logos/tux.svg" alt="" width="18" height="21">Fiordland</a>
-    <nav>
-      <a href="/#features">Features</a>
-      <a href="/compare/">Compare</a>
-      <a href="/docs/" aria-current="page">Docs</a>
-      <a href="/wiki/">Wiki</a>
-      <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-      <a href="https://discord.gg/gy4ANH2Q9V">Discord</a>
+    <a class="brand" href="/" aria-label="Fiordland Linux home"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="menu" aria-label="Main">
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Fiordland<i></i></button><div class="dd-menu"><a href="/about/"><b>About</b><span>What Fiordland is and who makes it</span></a><a href="/software/"><b>Software</b><span>The parts Fiordland is made of</span></a><a href="/why/"><b>Why Fiordland</b><span>What it does differently, compared with CachyOS and Arch</span></a><a href="/low-end/"><b>Low end PCs</b><span>Fiordland on older hardware</span></a><a href="/news/"><b>News</b><span>What changed in each release</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Download<i></i></button><div class="dd-menu"><a href="/download/"><b>Download the ISO</b><span>Latest build, checksum and requirements</span></a><a href="/mirrors/"><b>Mirrors</b><span>Servers that carry the repo and the ISOs</span></a><a href="/repo/x86_64/"><b>Package repo</b><span>Browse the signed packages</span></a></div></div>
+      <div class="dd cur"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Docs<i></i></button><div class="dd-menu wide"><a href="/docs/install/"><b>Install</b><span>From a download to a working desktop</span></a><a href="/docs/first-steps/"><b>First steps</b><span>What to do after the first boot</span></a><a href="/docs/apps/"><b>Installing apps</b><span>Use tawaki for every source</span></a><a href="/docs/updates/"><b>Updates</b><span>Stay current and know what changed</span></a><a href="/docs/snapshots/"><b>Snapshots</b><span>Undo a bad update</span></a><a href="/docs/kernel/"><b>The kernel</b><span>What the Fiordland kernel sets and why</span></a><a href="/docs/crest/"><b>The crest shell</b><span>The Hyprland shell and its shortcuts</span></a><a href="/docs/live-wallpapers/"><b>Live wallpapers</b><span>Wallpaper Engine on Fiordland</span></a><a href="/docs/help/"><b>Getting help</b><span>Where to ask and what to include</span></a></div></div>
+      <div class="dd"><button class="mi" type="button" aria-expanded="false" aria-haspopup="true">Community<i></i></button><div class="dd-menu"><a href="/wiki/"><b>Wiki</b><span>Community guides and fixes</span></a><a href="https://discord.gg/gy4ANH2Q9V"><b>Discord</b><span>Chat with users and the developer</span></a><a href="https://github.com/Fiordland-Linux/fiordland"><b>GitHub</b><span>Source code and issues</span></a><a href="/contribute/"><b>Contribute</b><span>Reports, docs and code</span></a><a href="/security/"><b>Security</b><span>Report a problem, check signatures</span></a></div></div>
+      <a class="mi" href="/donate/">Donate</a>
     </nav>
-    <a class="btn sm" data-iso href="/iso/fiordland-latest.iso">Download</a>
+    <a class="btn sm" href="/download/">Download</a>
   </div>
 </header>
+<main id="main" class="wrap dlayout">
+<aside class="dside" aria-label="Docs navigation"><input id="dq" type="search" placeholder="Filter pages" aria-label="Filter docs pages"><div class="grp"><p>Getting started</p><ul><li><a href="/docs/install/">Install Fiordland</a></li><li><a href="/docs/first-steps/">First steps</a></li></ul></div><div class="grp"><p>Using Fiordland</p><ul><li><a href="/docs/apps/">Installing apps</a></li><li><a href="/docs/updates/">Updates</a></li><li><a href="/docs/snapshots/">Snapshots and rollback</a></li><li><a href="/docs/kernel/">The kernel</a></li><li><a href="/docs/crest/">The crest shell</a></li><li><a href="/docs/live-wallpapers/">Live wallpapers</a></li></ul></div><div class="grp"><p>Help</p><ul><li><a href="/docs/help/" aria-current="page">Getting help</a></li><li><a href="/wiki/">Community wiki</a></li></ul></div></aside>
+<article class="dmain">
+<h1>Getting help</h1>
+<p class="lede">Where to ask, what to include, and how to collect it.</p>
 
-<main class="wrap main-pad">
-  <p class="eyebrow"><a href="/docs/">Docs</a></p>
-  <h1 class="page">Getting help</h1>
-  <p class="lede">Where to ask, and what to include so people can help.</p>
-  <section class="msec">
-    <h2 class="h3">Where to ask</h2>
-    <ul class="dlist"><li><a href="/wiki/">Wiki</a>: guides and fixes written by users. Search it first.</li><li><a href="/wiki/Help_desk">Help desk</a>: ask a question on the wiki. Every wiki page also has a Discussion tab.</li><li><a href="https://github.com/Fiordland-Linux/fiordland/issues">GitHub issues</a>: bugs in Fiordland, tawaki or the installer.</li><li><a href="https://wiki.archlinux.org">Arch Wiki</a>: Fiordland uses the Arch repos, so most of it applies.</li></ul>
-  </section>
-  <section class="msec">
-    <h2 class="h3">What to include</h2>
-    <ul class="dlist"><li>What you did, what you expected, and what happened instead.</li><li>The exact error text. Copy it, do not retype it.</li><li>Your hardware, especially the GPU.</li></ul>
-    <p>This prints a hardware summary you can paste:</p>
-    <pre class="term">inxi -Fxz</pre>
-    <p>For errors from the current boot:</p>
-    <pre class="term">journalctl -b -p err --no-pager | tail -50</pre>
-  </section>
-  <section class="msec">
-    <h2 class="h3">Do not paste</h2>
-    <p>Passwords, Wi-Fi keys or anything from <code>/etc/shadow</code>. <code>inxi -z</code> already hides serial numbers and IP addresses.</p>
-  </section>
-  <nav class="dpager" aria-label="Docs pages"><a class="dp" href="/docs/snapshots/"><span>Previous</span>Snapshots and rollback</a><span></span></nav>
+<h2>Where to ask</h2>
+<ul>
+<li><a href="/wiki/">Wiki</a>: guides and fixes written by users. Search it first, especially the <a href="/wiki/Troubleshooting">Troubleshooting</a> and <a href="/wiki/FAQ">FAQ</a> pages.</li>
+<li><a href="/wiki/Help_desk">Help desk</a>: ask a question on the wiki. Every wiki page also has a Discussion tab.</li>
+<li><a href="https://discord.gg/gy4ANH2Q9V">Discord</a>: chat with other users. Run <code>/helpme</code> to see what to include.</li>
+<li><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a>: bugs in Fiordland, tawaki or the installer, with a form for bug reports, feature requests and hardware reports.</li>
+<li><a href="https://wiki.archlinux.org">Arch Wiki</a>: Fiordland uses the Arch repos, so most of it applies.</li>
+</ul>
+<h2>What to include</h2>
+<p>What you did, what you expected, and what happened instead. The exact error text, copied rather than retyped. Your hardware, especially the GPU.</p>
+<p>Fiordland can collect the details for you. This writes one file in your home folder with your user and host names replaced, and nothing is uploaded:</p>
+<pre class="term"><code>fiordland report</code></pre>
+<p>To print a hardware summary you can paste, or the errors from the current boot:</p>
+<pre class="term"><code>inxi -Fxz
+journalctl -b -p err --no-pager | tail -50</code></pre>
+<h2>If the installer fails</h2>
+<p>Press Save log on the failure page, then try again from the Review page. Attach the log to a bug report. Other install problems are covered at the end of the <a href="/docs/install/">install guide</a>.</p>
+<h2>Do not paste</h2>
+<p>Passwords, WiFi keys or anything from <code>/etc/shadow</code>. <code>inxi -z</code> already hides serial numbers and IP addresses. For a security problem, do not open a public issue: follow the <a href="/security/">security policy</a>.</p>
+<nav class="pager" aria-label="Previous and next page"><a class="pg prev" href="/docs/live-wallpapers/"><span>Previous</span>Live wallpapers</a><span></span></nav>
+</article>
+<aside class="dtoc" aria-label="On this page"><p>On this page</p><ul id="toc"></ul></aside>
 </main>
-
+<section class="band cta-band" aria-labelledby="questions-h">
+  <svg class="edge top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-light" d="M0 80V52L1440 8V80Z"/></svg>
+  <div class="wrap"><h2 id="questions-h">Questions?</h2><p class="sub">Fiordland is a small project. Ask in the Discord, search the wiki or open an issue.</p>
+  <p class="links-row"><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="/wiki/">Wiki</a><a href="https://github.com/Fiordland-Linux/fiordland/issues/new/choose">GitHub issues</a><a href="/contribute/">Contribute</a></p></div>
+  <svg class="edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="to-base" d="M0 80V56Q720 -16 1440 56V80Z"/></svg>
+</section>
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span class="mark">Fiordland</span>
-    <span class="credit">Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>)</span>
-    <a href="/docs/">Docs</a>
-    <a href="/why/">Why Fiordland</a>
-    <a href="/low-end/">Low-end PCs</a>
-    <a href="/wiki/">Wiki</a>
-    <a href="/mirrors/">Mirrors</a>
-    <a href="/repo/x86_64/">Repo</a>
-    <a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a>
-      <a href="https://donate.stripe.com/8x25kFfe96fn0WL6X12wU00">Donate</a>
-    <a href="https://apollo44.lat">apollo44.lat</a>
-    <a href="https://ivy.rest">ivy.rest</a>
-    <span class="credit">Tux by <a href="https://isc.tamu.edu/~lewing/linux/">Larry Ewing</a>, Simon Budig and Garrett LeSage, made with The GIMP.</span>
-    <span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span>
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><a href="/"><img src="/assets/brand/lockup-dark.svg" alt="Fiordland Linux" width="152" height="32"></a><p>A Linux distribution based on Arch, with its own installer, package manager and desktop shell.</p><a class="btn sm ghost" href="/donate/">Donate</a></div>
+    <div><h2>Fiordland</h2><a href="/about/">About</a><a href="/software/">Software</a><a href="/why/">Why Fiordland</a><a href="/low-end/">Low end PCs</a><a href="/news/">News</a></div><div><h2>Download</h2><a href="/download/">Download the ISO</a><a href="/mirrors/">Mirrors</a><a href="/repo/x86_64/">Package repo</a></div><div><h2>Docs</h2><a href="/docs/install/">Install</a><a href="/docs/first-steps/">First steps</a><a href="/docs/apps/">Installing apps</a><a href="/docs/updates/">Updates</a><a href="/docs/snapshots/">Snapshots</a><a href="/docs/kernel/">The kernel</a><a href="/docs/crest/">The crest shell</a><a href="/docs/live-wallpapers/">Live wallpapers</a><a href="/docs/help/">Getting help</a></div><div><h2>Community</h2><a href="/wiki/">Wiki</a><a href="https://discord.gg/gy4ANH2Q9V">Discord</a><a href="https://github.com/Fiordland-Linux/fiordland">GitHub</a><a href="/contribute/">Contribute</a><a href="/security/">Security</a></div>
   </div>
+  <div class="wrap foot-badge"><span class="badge88"><button type="button" class="badge88-btn" title="Copy the HTML for this button"><img src="/assets/fiordland-88x31.gif" width="88" height="31" alt="Powered by Fiordland Linux"></button><span class="badge88-msg">Use Fiordland? Click to copy our button for your site.</span></span></div>
+  <div class="wrap foot-bot"><span>Linux is the registered trademark of Linus Torvalds in the U.S. and other countries.</span><span><a href="mailto:fiordlandlinux@gmail.com">fiordlandlinux@gmail.com</a> &middot; Created by <a href="https://apollo44.lat" rel="author">Apollo</a> (<a href="https://github.com/3cfl">3cfl</a>) &middot; <a href="https://ivy.rest">ivy.rest</a></span></div>
 </footer>
-<script src="/assets/js/site.js?v=6" defer></script>
+<script src="/assets/js/site.js?v=7" defer></script>
+<script src="/assets/js/nav.js?v=4" defer></script>
 </body>
 </html>
